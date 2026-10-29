@@ -20,15 +20,15 @@ O foco do trabalho é a aplicação prática de **estruturas de dados lineares**
 
 ## 👥 Equipe
 
-| Nome  | Responsabilidade |
-|-------|------------|------------------|
-| Antonio Bernardo   |  _Ex.: Cadastro e banco local_ |
-| Guilherme Linhares |  _Ex.: Fila e leitos_ |
-| João Pedro Barreto |  _Ex.: Pilha, busca e ordenação_ |
-| Lucas Rafael       |  _Ex.: Pilha, busca e ordenação_ |
+| Nome | Responsabilidade |
+|------|------------------|
+| Antonio Bernardo | _Ex.: Cadastro e banco local_ |
+| Guilherme Linhares | _Ex.: Fila e leitos_ |
+| João Pedro | _Ex.: Pilha, busca e ordenação_ |
+| Lucas Rafael | _Ex.: Estatísticas, médicos e relatórios_ |
 
 **Disciplina:** Lógica de Programação
-**Professor(a):** Leonardo Lucena
+**Professor:** Leonardo Lucena
 **Prazo:** 40 dias
 
 ---
