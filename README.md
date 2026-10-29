@@ -20,14 +20,15 @@ O foco do trabalho é a aplicação prática de **estruturas de dados lineares**
 
 ## 👥 Equipe
 
-| Nome | Matrícula | Responsabilidade |
-|------|-----------|------------------|
-| _Nome do integrante_ | _000000_ | _Ex.: Cadastro e banco local_ |
-| _Nome do integrante_ | _000000_ | _Ex.: Fila e leitos_ |
-| _Nome do integrante_ | _000000_ | _Ex.: Pilha, busca e ordenação_ |
+| Nome  | Responsabilidade |
+|-------|------------|------------------|
+| Antonio Bernardo   |  _Ex.: Cadastro e banco local_ |
+| Guilherme Linhares |  _Ex.: Fila e leitos_ |
+| João Pedro Barreto |  _Ex.: Pilha, busca e ordenação_ |
+| Lucas Rafael       |  _Ex.: Pilha, busca e ordenação_ |
 
 **Disciplina:** Lógica de Programação
-**Professor(a):** _preencher_
+**Professor(a):** Leonardo Lucena
 **Prazo:** 40 dias
 
 ---
