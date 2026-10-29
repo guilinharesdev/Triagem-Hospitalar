@@ -48,13 +48,13 @@ Cada paciente é cadastrado com:
 
 | Nível | Classificação | Setor de leitos de destino |
 |-------|---------------|----------------------------|
-| 🔴 **1** | **Emergência** | Setor 0 — Emergência / UTI |
+| 🟢 **1** | **Pouco urgente** | Setor 0 — Atendimento comum |
 | 🟡 **2** | **Urgente** | Setor 1 — Observação / Clínica |
-| 🟢 **3** | **Pouco urgente** | Setor 2 — Atendimento comum |
+| 🔴 **3** | **Emergência** | Setor 2 — Emergência / UTI |
 
 ### 3. Fila de espera (FIFO)
 - Gerencia a espera para **triagem e consulta**, respeitando a ordem de chegada.
-- Pacientes de **emergência (nível 1)** são inseridos com **regra de precedência**, passando à frente dos demais; entre pacientes do mesmo nível vale a ordem de chegada.
+- Pacientes de **emergência (nível 3)** são inseridos com **regra de precedência**, passando à frente dos demais; entre pacientes do mesmo nível vale a ordem de chegada.
 - Ao chamar o próximo paciente, o sistema o **redireciona automaticamente ao primeiro leito livre** do setor correspondente à sua gravidade.
 - Se o setor estiver lotado, o paciente permanece na fila e o sistema exibe um aviso.
 
@@ -118,8 +118,8 @@ Exemplo de `pacientes.csv`:
 
 ```csv
 id,nome,cpf,telefone,gravidade,data_cadastro,data_atendimento,setor,leito,status
-1,Maria Souza,12345678900,71999990000,1,2026-10-29 19:30:00,2026-10-29 19:32:10,0,2,atendido
-2,João Lima,98765432100,71988880000,3,2026-10-29 19:35:00,,,,aguardando
+1,Maria Souza,12345678900,71999990000,3,2026-10-29 19:30:00,2026-10-29 19:32:10,2,2,atendido
+2,João Lima,98765432100,71988880000,1,2026-10-29 19:35:00,,,,aguardando
 ```
 
 > O formato CSV permite abrir a base diretamente no Excel ou Google Planilhas para gerar relatórios e gráficos.
@@ -212,15 +212,15 @@ Cadastro (nome, CPF, telefone, gravidade 1-3)
 Grava no banco local (pacientes.csv)
         │
         ▼
-Entra na fila FIFO ── nível 1 passa à frente (precedência)
+Entra na fila FIFO ── nível 3 passa à frente (precedência)
         │
         ▼
 Chamada do próximo paciente
         │
         ▼
-Gravidade 1 ─► Setor 0 (Emergência/UTI)
+Gravidade 1 ─► Setor 0 (Atendimento comum)
 Gravidade 2 ─► Setor 1 (Observação/Clínica)
-Gravidade 3 ─► Setor 2 (Atendimento comum)
+Gravidade 3 ─► Setor 2 (Emergência/UTI)
         │
         ▼
 Leito marcado como ocupado (1) + ação empilhada no histórico
