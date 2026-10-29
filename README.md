@@ -1,254 +1,249 @@
-# Documentação Técnica — Sistema de Atendimento e Triagem Hospitalar
+# 🏥 Sistema de Atendimento e Triagem Hospitalar
 
-**Disciplina:** Lógica de Programação • **Proposta 1** • **Linguagem:** PHP (CLI) • **Prazo:** 40 dias
-
----
-
-## 1. Descrição geral
-
-O objetivo do projeto é desenvolver uma solução computacional para gerenciar o fluxo de triagem, as filas de atendimento emergencial, a alocação de leitos e o histórico de prontuários em um centro médico.
-
-Os alunos devem aplicar conceitos avançados de **estruturas de dados lineares** e **persistência de dados local**, sem suporte a bancos de dados externos.
+> Projeto Prático de **Lógica de Programação** — Proposta 1
+> Desenvolvido em **PHP** (modo terminal / CLI), sem banco de dados externo.
 
 ---
 
-## 2. Aplicação exigida das estruturas de dados
+## 📋 Sobre o projeto
+
+Solução computacional para gerenciar o fluxo de **triagem**, a **fila de atendimento**, a **alocação de leitos** e o **histórico de prontuários** de um centro médico.
+
+O fluxo do sistema é:
+
+1. O paciente é **cadastrado** (nome, CPF, telefone e gravidade).
+2. Ele entra na **fila de espera (FIFO)** para triagem e consulta.
+3. Ao ser chamado, é **redirecionado para o setor de leitos** correspondente ao seu nível de gravidade.
+4. Todas as ações ficam registradas no **histórico (pilha)** e todos os dados dos pacientes são gravados em um **banco de dados local** para análises futuras.
+
+O foco do trabalho é a aplicação prática de **estruturas de dados lineares** e **persistência local em arquivos**, sem uso de bancos de dados externos (MySQL, PostgreSQL etc.).
+
+## 👥 Equipe
+
+| Nome | Matrícula | Responsabilidade |
+|------|-----------|------------------|
+| _Nome do integrante_ | _000000_ | _Ex.: Cadastro e banco local_ |
+| _Nome do integrante_ | _000000_ | _Ex.: Fila e leitos_ |
+| _Nome do integrante_ | _000000_ | _Ex.: Pilha, busca e ordenação_ |
+
+**Disciplina:** Lógica de Programação
+**Professor(a):** _preencher_
+**Prazo:** 40 dias
+
+---
+
+## ✨ Funcionalidades
+
+### 1. Cadastro de pacientes
+Cada paciente é cadastrado com:
+
+| Campo | Descrição | Validação |
+|-------|-----------|-----------|
+| **Nome** | Nome completo | Obrigatório |
+| **CPF** | Documento do paciente | 11 dígitos numéricos, sem duplicidade na fila |
+| **Telefone** | Contato com DDD | 10 ou 11 dígitos numéricos |
+| **Gravidade** | Nível do problema (1 a 3) | Apenas 1, 2 ou 3 |
+
+### 2. Níveis de gravidade
+
+| Nível | Classificação | Setor de leitos de destino |
+|-------|---------------|----------------------------|
+| 🔴 **1** | **Emergência** | Setor 0 — Emergência / UTI |
+| 🟡 **2** | **Urgente** | Setor 1 — Observação / Clínica |
+| 🟢 **3** | **Pouco urgente** | Setor 2 — Atendimento comum |
+
+### 3. Fila de espera (FIFO)
+- Gerencia a espera para **triagem e consulta**, respeitando a ordem de chegada.
+- Pacientes de **emergência (nível 1)** são inseridos com **regra de precedência**, passando à frente dos demais; entre pacientes do mesmo nível vale a ordem de chegada.
+- Ao chamar o próximo paciente, o sistema o **redireciona automaticamente ao primeiro leito livre** do setor correspondente à sua gravidade.
+- Se o setor estiver lotado, o paciente permanece na fila e o sistema exibe um aviso.
+
+### 4. Histórico e desfazer (Pilha)
+- Registra as ações do plantão (cadastro, chamada, ocupação e liberação de leito).
+- Permite **desfazer (Undo)** a última ação e consultar o **último prontuário modificado**.
+
+### 5. Mapa de leitos (Matriz 2D)
+- Linhas = setores, colunas = leitos.
+- `0` = livre, `1` = ocupado.
+- Permite visualizar a ocupação, ocupar e liberar leitos.
+
+### 6. Estatísticas e médicos (Vetor 1D)
+- Estatísticas do dia: cadastrados, atendidos, por nível de gravidade, leitos ocupados.
+- Lista consolidada de médicos e especialidades disponíveis.
+
+### 7. Busca e ordenação
+- **Busca por CPF** (linear ou binária).
+- **Ordenação** (Bubble, Selection ou QuickSort, implementada manualmente) da lista final por **nome** ou **gravidade**.
+
+### 8. Banco de dados local (persistência)
+- Os dados são salvos em arquivos, sem servidor de banco de dados.
+- O estado da fila, do histórico e dos leitos é restaurado ao reiniciar o programa.
+- Todos os pacientes cadastrados ficam **armazenados permanentemente** para **análise futura**.
+
+---
+
+## 🧱 Estruturas de dados aplicadas
 
 | Estrutura | Mapeamento no sistema hospitalar |
 |-----------|----------------------------------|
 | **Fila (FIFO)** | Gerenciamento da fila de espera para triagem e consulta. Pacientes prioritários (emergência) são inseridos com regras de precedência. |
-| **Pilha (LIFO)** | Histórico de ações e atendimentos realizados no plantão, permitindo operação de desfazer (Undo) ou consulta do último prontuário modificado. |
+| **Pilha (LIFO)** | Histórico de ações e atendimentos do plantão, permitindo desfazer (Undo) ou consultar o último prontuário modificado. |
 | **Matriz (2D)** | Mapa de leitos (linhas = andares/setores, colunas = leitos). Controla ocupação: `0` = livre, `1` = ocupado. |
 | **Vetor (1D)** | Estatísticas temporárias do dia e listagem consolidada de médicos/especialidades disponíveis. |
-| **Busca e Ordenação** | Busca linear/binária por CPF. Ordenação (Bubble, Selection ou QuickSort) da lista final por nome ou gravidade. |
+| **Busca e Ordenação** | Busca linear/binária por CPF. Ordenação (Bubble, Selection ou QuickSort) por nome ou gravidade. |
 | **Persistência** | Manipulação de arquivos (txt, csv ou json) para salvar e carregar o estado das filas e do histórico ao reiniciar o programa. |
 
 ---
 
-## 3. Arquitetura de interface
+## 🗄️ Banco de dados local
 
-| Opção | Descrição | Escolha |
-|-------|-----------|---------|
-| **A — Terminal / CLI** | Menu interativo em texto, com navegação por opções numéricas para cadastro, chamadas e relatórios. | ✅ Adotada |
-| **B — Web simplificado (PHP)** | HTML5 e CSS3 puros, sem JavaScript. Formulários recarregam a página mantendo o estado no arquivo local. | — |
+O "banco de dados" é composto por arquivos na pasta `dados/`, em dois grupos:
+
+**Estado do plantão** (restaurado ao reiniciar):
+
+| Arquivo | Conteúdo |
+|---------|----------|
+| `fila.json` | Pacientes aguardando atendimento |
+| `historico.json` | Pilha de ações do plantão |
+| `leitos.json` | Matriz de ocupação dos leitos |
+| `medicos.json` | Médicos e especialidades |
+
+**Base permanente de pacientes** (para análise futura):
+
+| Arquivo | Conteúdo |
+|---------|----------|
+| `pacientes.csv` | Registro de todos os pacientes cadastrados e seus atendimentos |
+
+Exemplo de `pacientes.csv`:
+
+```csv
+id,nome,cpf,telefone,gravidade,data_cadastro,data_atendimento,setor,leito,status
+1,Maria Souza,12345678900,71999990000,1,2026-10-29 19:30:00,2026-10-29 19:32:10,0,2,atendido
+2,João Lima,98765432100,71988880000,3,2026-10-29 19:35:00,,,,aguardando
+```
+
+> O formato CSV permite abrir a base diretamente no Excel ou Google Planilhas para gerar relatórios e gráficos.
 
 ---
 
-## 4. Modelagem dos dados
+## 🛠️ Requisitos
 
-### 4.1 Paciente
+- **PHP 8.0** ou superior
+- Terminal (Windows PowerShell/CMD, Linux ou macOS)
+- Nenhuma biblioteca ou banco de dados externo
 
-```php
-$paciente = [
-    'id'          => 1,
-    'nome'        => 'Maria Souza',
-    'cpf'         => '12345678900',
-    'idade'       => 45,
-    'gravidade'   => 2,            // 1 = emergência ... 4 = não urgente
-    'sintomas'    => 'Dor torácica',
-    'chegada'     => '2026-10-28 17:30:00',
-    'status'      => 'aguardando', // aguardando | em_atendimento | atendido
-];
-```
-
-### 4.2 Ação do histórico (pilha)
-
-```php
-$acao = [
-    'tipo'      => 'CADASTRO',     // CADASTRO | CHAMADA | OCUPAR_LEITO | LIBERAR_LEITO
-    'paciente'  => $paciente,
-    'detalhes'  => ['setor' => 0, 'leito' => 3],
-    'data_hora' => '2026-10-28 17:31:00',
-];
-```
-
-### 4.3 Mapa de leitos (matriz)
-
-```php
-// 3 setores x 5 leitos
-$leitos = [
-    [0, 1, 0, 0, 1],  // Setor 0 — Emergência
-    [0, 0, 0, 1, 0],  // Setor 1 — Clínica geral
-    [1, 0, 0, 0, 0],  // Setor 2 — UTI
-];
-```
-
-### 4.4 Vetores
-
-```php
-$medicos = [
-    ['nome' => 'Dr. Carlos', 'especialidade' => 'Clínico Geral'],
-    ['nome' => 'Dra. Ana',   'especialidade' => 'Cardiologia'],
-];
-
-$estatisticas = [
-    'cadastrados' => 0,
-    'atendidos'   => 0,
-    'emergencias' => 0,
-    'leitos_ocupados' => 0,
-];
+```bash
+php -v
 ```
 
 ---
 
-## 5. Módulos e algoritmos
+## 🚀 Como executar
 
-### 5.1 Fila com prioridade (`fila.php`)
+```bash
+# 1. Clone o repositório
+git clone <url-do-repositorio>
+cd sistema-triagem-hospitalar
 
-| Função | Descrição |
-|--------|-----------|
-| `enfileirar($fila, $paciente)` | Insere o paciente. Emergências (nível 1) entram à frente dos demais, mantendo a ordem de chegada entre emergências. |
-| `desenfileirar($fila)` | Remove e retorna o primeiro da fila. |
-| `exibirFila($fila)` | Lista os pacientes aguardando. |
-| `filaVazia($fila)` | Retorna `true` se não houver pacientes. |
+# 2. Execute o programa
+php index.php
+```
 
-### 5.2 Pilha de histórico (`pilha.php`)
-
-| Função | Descrição |
-|--------|-----------|
-| `empilhar($pilha, $acao)` | Registra uma ação no topo. |
-| `desempilhar($pilha)` | Remove e retorna a última ação (base do **Undo**). |
-| `topo($pilha)` | Consulta o último prontuário/ação sem remover. |
-| `desfazer($fila, $pilha, $leitos)` | Reverte a última ação conforme seu tipo. |
-
-**Regras do desfazer:**
-
-| Ação desfeita | Efeito |
-|---------------|--------|
-| `CADASTRO` | Remove o paciente da fila |
-| `CHAMADA` | Devolve o paciente ao início da fila |
-| `OCUPAR_LEITO` | Marca o leito como livre (`0`) |
-| `LIBERAR_LEITO` | Marca o leito como ocupado (`1`) |
-
-### 5.3 Mapa de leitos (`leitos.php`)
-
-| Função | Descrição |
-|--------|-----------|
-| `exibirMapa($leitos)` | Imprime a matriz com legenda (livre/ocupado). |
-| `ocuparLeito($leitos, $setor, $leito)` | Valida e define `1`. |
-| `liberarLeito($leitos, $setor, $leito)` | Valida e define `0`. |
-| `primeiroLeitoLivre($leitos)` | Percorre a matriz e retorna a primeira posição livre. |
-
-### 5.4 Busca (`busca.php`)
-
-| Função | Descrição |
-|--------|-----------|
-| `buscaLinear($lista, $cpf)` | Percorre a lista sequencialmente. |
-| `buscaBinaria($lista, $cpf)` | Exige lista previamente ordenada por CPF. |
-
-### 5.5 Ordenação (`ordenacao.php`)
-
-Algoritmo escolhido: **_Bubble / Selection / QuickSort_** (definir).
-
-| Função | Critério |
-|--------|----------|
-| `ordenarPorNome($lista)` | Ordem alfabética |
-| `ordenarPorGravidade($lista)` | Do mais grave ao menos grave |
-
-> Os algoritmos devem ser **implementados manualmente**, sem `sort()`, `usort()` e similares.
-
-### 5.6 Persistência (`arquivo.php`)
-
-| Função | Descrição |
-|--------|-----------|
-| `salvarDados($caminho, $dados)` | Grava o estado em JSON. |
-| `carregarDados($caminho)` | Lê o arquivo; retorna estrutura vazia se não existir. |
+> Na primeira execução, a pasta e os arquivos de `dados/` são criados automaticamente.
 
 ---
 
-## 6. Fluxo do sistema
+## 📁 Estrutura de pastas
 
 ```
-Início
-  │
-  ├─► Carrega dados (fila, histórico, leitos, médicos)
-  │
-  ├─► Exibe menu ◄─────────────────┐
-  │       │                         │
-  │       ▼                         │
-  │   Executa opção ────────────────┘
-  │       │
-  │      (0 - Sair)
-  ▼
-Salva dados em arquivo
-  │
-Fim
+sistema-triagem-hospitalar/
+├── index.php              # Ponto de entrada e menu principal
+├── src/
+│   ├── paciente.php       # Cadastro e validação de pacientes
+│   ├── fila.php           # Fila (FIFO) com precedência
+│   ├── pilha.php          # Pilha (LIFO) de histórico / undo
+│   ├── leitos.php         # Matriz de leitos e redirecionamento
+│   ├── medicos.php        # Vetor de médicos e especialidades
+│   ├── busca.php          # Busca linear / binária por CPF
+│   ├── ordenacao.php      # Algoritmos de ordenação
+│   ├── arquivo.php        # Leitura e gravação (banco local)
+│   └── relatorios.php     # Estatísticas e relatórios
+├── dados/
+│   ├── fila.json
+│   ├── historico.json
+│   ├── leitos.json
+│   ├── medicos.json
+│   └── pacientes.csv
+├── README.md
+└── DOCUMENTACAO.md
 ```
 
 ---
 
-## 7. Menu de opções
+## 🖥️ Menu principal (exemplo)
 
-| Opção | Ação |
-|-------|------|
-| 1 | Cadastrar paciente na fila |
-| 2 | Chamar próximo paciente |
-| 3 | Exibir fila de espera |
-| 4 | Mapa de leitos |
-| 5 | Ocupar / liberar leito |
-| 6 | Buscar paciente por CPF |
-| 7 | Relatório ordenado (nome / gravidade) |
-| 8 | Histórico e desfazer última ação |
-| 9 | Médicos e especialidades |
-| 10 | Estatísticas do dia |
-| 0 | Salvar e sair |
-
----
-
-## 8. Validações
-
-- CPF com 11 dígitos numéricos e sem duplicidade na fila
-- Nome obrigatório (não vazio)
-- Gravidade entre 1 e 4
-- Setor e leito dentro dos limites da matriz
-- Não ocupar leito já ocupado, nem liberar leito já livre
-- Não chamar paciente com a fila vazia
-- Não desfazer com a pilha vazia
+```
+==========================================
+   SISTEMA DE TRIAGEM HOSPITALAR
+==========================================
+ 1 - Cadastrar paciente
+ 2 - Exibir fila de espera
+ 3 - Chamar próximo paciente (redireciona ao leito)
+ 4 - Mapa de leitos
+ 5 - Liberar leito
+ 6 - Buscar paciente por CPF
+ 7 - Relatório ordenado (nome / gravidade)
+ 8 - Histórico / desfazer última ação
+ 9 - Médicos e especialidades
+10 - Estatísticas do dia
+ 0 - Salvar e sair
+==========================================
+Escolha uma opção:
+```
 
 ---
 
-## 9. Casos de teste sugeridos
+## 🔄 Fluxo de atendimento
 
-| # | Cenário | Resultado esperado |
-|---|---------|--------------------|
-| 1 | Cadastrar 3 pacientes de gravidade 3 | Atendidos na ordem de chegada |
-| 2 | Cadastrar paciente de gravidade 1 após os demais | Vai para a frente da fila |
-| 3 | Chamar paciente com fila vazia | Mensagem de aviso, sem erro |
-| 4 | Ocupar leito já ocupado | Operação recusada |
-| 5 | Desfazer após cadastro | Paciente removido da fila |
-| 6 | Buscar CPF inexistente | Mensagem "não encontrado" |
-| 7 | Fechar e reabrir o programa | Fila, histórico e leitos preservados |
-| 8 | Ordenar por gravidade | Lista do nível 1 ao 4 |
-
----
-
-## 10. Cronograma sugerido (40 dias)
-
-| Período | Entrega |
-|---------|---------|
-| Dias 1–5 | Planejamento, modelagem e estrutura de pastas |
-| Dias 6–12 | Fila com prioridade e cadastro de pacientes |
-| Dias 13–18 | Pilha de histórico e desfazer |
-| Dias 19–24 | Matriz de leitos e vetores (médicos/estatísticas) |
-| Dias 25–30 | Busca e ordenação |
-| Dias 31–35 | Persistência em arquivos |
-| Dias 36–38 | Testes e correções |
-| Dias 39–40 | Documentação final e apresentação |
+```
+Cadastro (nome, CPF, telefone, gravidade 1-3)
+        │
+        ▼
+Grava no banco local (pacientes.csv)
+        │
+        ▼
+Entra na fila FIFO ── nível 1 passa à frente (precedência)
+        │
+        ▼
+Chamada do próximo paciente
+        │
+        ▼
+Gravidade 1 ─► Setor 0 (Emergência/UTI)
+Gravidade 2 ─► Setor 1 (Observação/Clínica)
+Gravidade 3 ─► Setor 2 (Atendimento comum)
+        │
+        ▼
+Leito marcado como ocupado (1) + ação empilhada no histórico
+```
 
 ---
 
-## 11. Critérios de avaliação (barema)
+## ✅ Checklist de entrega
 
-> Preencher com os pesos do barema fornecido pelo professor.
+- [ ] Cadastro de pacientes (nome, CPF, telefone, gravidade)
+- [ ] Fila FIFO com precedência de emergência
+- [ ] Redirecionamento ao leito conforme a gravidade
+- [ ] Pilha (LIFO) com desfazer
+- [ ] Matriz 2D de leitos
+- [ ] Vetores (estatísticas e médicos)
+- [ ] Busca por CPF
+- [ ] Ordenação por nome e gravidade
+- [ ] Persistência do estado ao reiniciar
+- [ ] Banco de dados local para análise futura
+- [ ] README e documentação
 
-| Critério | Pontos |
-|----------|--------|
-| Fila (FIFO) com prioridade | _ |
-| Pilha (LIFO) e desfazer | _ |
-| Matriz de leitos | _ |
-| Vetores | _ |
-| Busca e ordenação | _ |
-| Persistência em arquivo | _ |
-| Interface e usabilidade | _ |
-| Organização do código e documentação | _ |
-| **Total** | **_** |
+---
+
+## 📄 Licença
+
+Projeto acadêmico, desenvolvido para fins educacionais.
