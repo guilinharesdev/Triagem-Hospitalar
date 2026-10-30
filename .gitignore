@@ -1,0 +1,30 @@
+# Dependências
+/vendor/
+
+# Ambiente
+.env
+.env.local
+.env.production
+.env.development
+
+# Logs
+/logs/*
+!logs/.gitkeep
+
+# Cache
+/cache/*
+!cache/.gitkeep
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+
+# Build
+/node_modules/
+/public/build/
+/public/hot
+/public/storage
