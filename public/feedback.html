@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#eef2f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1322" media="(prefers-color-scheme: dark)">
+  <title>Resultado do cadastro · VitaCare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a href="#conteudo" class="pular">Pular para o conteúdo</a>
+
+<input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Abrir ou fechar o menu">
+
+<div class="app">
+
+  <!-- ============ MENU LATERAL ============ -->
+  <aside class="sidebar" aria-label="Menu principal">
+    <div class="logo">
+      <span class="logo-icone" aria-hidden="true">✚</span>
+      <div>
+        <strong>VitaCare</strong>
+        <small>Triagem Hospitalar</small>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Seções do sistema">
+      <p class="nav-titulo">Principal</p>
+      <a href="index.html#inicio"><span aria-hidden="true">📊</span> Painel</a>
+      <a href="index.html#cadastro" class="ativo" aria-current="page"><span aria-hidden="true">📝</span> Cadastrar paciente</a>
+      <a href="index.html#fila"><span aria-hidden="true">⏳</span> Fila de espera <em class="badge">9<span class="sr"> pacientes</span></em></a>
+      <a href="index.html#leitos"><span aria-hidden="true">🛏️</span> Mapa de leitos</a>
+
+      <p class="nav-titulo">Consultas</p>
+      <a href="index.html#busca"><span aria-hidden="true">🔍</span> Buscar por CPF</a>
+      <a href="relatorio.html"><span aria-hidden="true">📋</span> Relatórios</a>
+      <a href="index.html#historico"><span aria-hidden="true">🕘</span> Histórico</a>
+      <a href="index.html#medicos"><span aria-hidden="true">🩺</span> Médicos</a>
+    </nav>
+
+    <div class="plantao">
+      <span class="pulso" aria-hidden="true"></span>
+      <div>
+        <strong>Plantão ativo</strong>
+        <small>Noturno · 19h às 07h</small>
+      </div>
+    </div>
+  </aside>
+
+  <label for="menu-toggle" class="overlay" aria-hidden="true"></label>
+
+  <!-- ============ CONTEÚDO ============ -->
+  <div class="conteudo">
+
+    <header class="topbar">
+      <label for="menu-toggle" class="hamburguer" aria-hidden="true"><span></span><span></span><span></span></label>
+      <div class="topbar-titulo">
+        <h1>Cadastro de paciente</h1>
+        <p><time datetime="2026-10-29">Quinta-feira, 29 de outubro de 2026</time></p>
+      </div>
+      <div class="usuario">
+        <div class="avatar" aria-hidden="true">RC</div>
+        <div class="usuario-info">
+          <strong>Recepção Central</strong>
+          <small>Triagem</small>
+        </div>
+      </div>
+    </header>
+
+    <main id="conteudo">
+
+      <!-- O PHP deve renderizar APENAS um dos dois blocos abaixo.
+           Na versão estática: feedback.html = sucesso, feedback.html#erro = erro. -->
+
+      <!-- ====== ERRO ====== -->
+      <section id="erro" class="feedback erro" role="alert" aria-labelledby="erro-titulo">
+        <span class="feedback-icone" aria-hidden="true">✕</span>
+        <h2 id="erro-titulo">Não foi possível cadastrar</h2>
+        <p>Confira os dados abaixo e tente novamente. Nenhuma informação foi salva.</p>
+        <ul class="erros">
+          <li>O CPF <strong>123.456.789-00</strong> já está na fila de espera.</li>
+          <li>O telefone deve ter 10 ou 11 números (DDD + número).</li>
+        </ul>
+        <div class="feedback-botoes">
+          <a href="index.html#cadastro" class="btn btn-primario">Corrigir dados</a>
+          <a href="index.html" class="btn btn-neutro">Voltar ao painel</a>
+        </div>
+      </section>
+
+      <!-- ====== SUCESSO ====== -->
+      <section id="sucesso" class="feedback sucesso" role="status" aria-labelledby="sucesso-titulo">
+        <span class="feedback-icone" aria-hidden="true">✓</span>
+        <h2 id="sucesso-titulo">Paciente cadastrado com sucesso!</h2>
+        <p>Os dados foram salvos e o paciente já está na fila, na posição definida pela gravidade.</p>
+        <dl class="resumo">
+          <div><dt>Paciente</dt><dd>Diego Farias</dd></div>
+          <div><dt>CPF</dt><dd>000.111.222-33</dd></div>
+          <div><dt>Gravidade</dt><dd><span class="pill g1"><b aria-hidden="true">1</b>Pouco urgente</span></dd></div>
+          <div><dt>Posição na fila</dt><dd>6º de 9</dd></div>
+          <div><dt>Setor de destino</dt><dd>Setor 0 · Comum</dd></div>
+          <div><dt>Horário</dt><dd><time datetime="19:47">19:47</time></dd></div>
+        </dl>
+        <div class="feedback-botoes">
+          <a href="index.html" class="btn btn-primario">Voltar ao painel</a>
+          <a href="index.html#cadastro" class="btn btn-neutro">Cadastrar outro paciente</a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="rodape">
+      <p><strong>VitaCare</strong> · Projeto de Lógica de Programação · Prof. Leonardo Lucena</p>
+      <p>Antonio Bernardo · Guilherme Linhares · João Pedro · Lucas Rafael</p>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

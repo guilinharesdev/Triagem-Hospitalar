@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#eef2f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1322" media="(prefers-color-scheme: dark)">
+  <title>Relatório de pacientes · VitaCare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a href="#conteudo" class="pular">Pular para o conteúdo</a>
+
+<input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Abrir ou fechar o menu">
+
+<div class="app">
+
+  <!-- ============ MENU LATERAL ============ -->
+  <aside class="sidebar" aria-label="Menu principal">
+    <div class="logo">
+      <span class="logo-icone" aria-hidden="true">✚</span>
+      <div>
+        <strong>VitaCare</strong>
+        <small>Triagem Hospitalar</small>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Seções do sistema">
+      <p class="nav-titulo">Principal</p>
+      <a href="index.html#inicio"><span aria-hidden="true">📊</span> Painel</a>
+      <a href="index.html#cadastro"><span aria-hidden="true">📝</span> Cadastrar paciente</a>
+      <a href="index.html#fila"><span aria-hidden="true">⏳</span> Fila de espera <em class="badge">8<span class="sr"> pacientes</span></em></a>
+      <a href="index.html#leitos"><span aria-hidden="true">🛏️</span> Mapa de leitos</a>
+
+      <p class="nav-titulo">Consultas</p>
+      <a href="index.html#busca"><span aria-hidden="true">🔍</span> Buscar por CPF</a>
+      <a href="relatorio.html" class="ativo" aria-current="page"><span aria-hidden="true">📋</span> Relatórios</a>
+      <a href="index.html#historico"><span aria-hidden="true">🕘</span> Histórico</a>
+      <a href="index.html#medicos"><span aria-hidden="true">🩺</span> Médicos</a>
+    </nav>
+
+    <div class="plantao">
+      <span class="pulso" aria-hidden="true"></span>
+      <div>
+        <strong>Plantão ativo</strong>
+        <small>Noturno · 19h às 07h</small>
+      </div>
+    </div>
+  </aside>
+
+  <label for="menu-toggle" class="overlay" aria-hidden="true"></label>
+
+  <!-- ============ CONTEÚDO ============ -->
+  <div class="conteudo">
+
+    <header class="topbar">
+      <label for="menu-toggle" class="hamburguer" aria-hidden="true"><span></span><span></span><span></span></label>
+      <div class="topbar-titulo">
+        <h1>Relatório de pacientes</h1>
+        <p><time datetime="2026-10-29">Quinta-feira, 29 de outubro de 2026</time></p>
+      </div>
+      <div class="usuario">
+        <div class="avatar" aria-hidden="true">RC</div>
+        <div class="usuario-info">
+          <strong>Recepção Central</strong>
+          <small>Triagem</small>
+        </div>
+      </div>
+    </header>
+
+    <main id="conteudo">
+
+      <!-- Resumo -->
+      <section class="kpis" aria-labelledby="resumo-titulo">
+        <h2 id="resumo-titulo" class="sr">Resumo do plantão</h2>
+        <article class="kpi">
+          <div class="kpi-icone azul" aria-hidden="true">👥</div>
+          <div><span class="kpi-num">12</span><span class="kpi-rot">Pacientes no relatório</span></div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-icone amarelo" aria-hidden="true">⏳</div>
+          <div><span class="kpi-num">6</span><span class="kpi-rot">Na fila</span></div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-icone verde" aria-hidden="true">🛏️</div>
+          <div><span class="kpi-num">5</span><span class="kpi-rot">Em leito</span></div>
+        </article>
+        <article class="kpi">
+          <div class="kpi-icone roxo" aria-hidden="true">✅</div>
+          <div><span class="kpi-num">1</span><span class="kpi-rot">Liberados</span></div>
+        </article>
+      </section>
+
+      <section class="card" aria-labelledby="tabela-titulo">
+        <div class="card-topo">
+          <div>
+            <h2 id="tabela-titulo">Todos os pacientes</h2>
+            <p>Ordenado por gravidade (maior primeiro) e horário de chegada</p>
+          </div>
+          <span class="contador">12 registros</span>
+        </div>
+
+        <div class="ferramentas">
+          <span class="ferramentas-rotulo" id="ordem-rotulo">Ordenar por</span>
+          <!-- O PHP marca aria-pressed="true" no botão da ordem atual -->
+          <form action="index.php" method="get" class="segmentado" aria-labelledby="ordem-rotulo">
+            <input type="hidden" name="acao" value="relatorio">
+            <button type="submit" name="ordem" value="nome" aria-pressed="false">A–Z Nome</button>
+            <button type="submit" name="ordem" value="gravidade" aria-pressed="true">Gravidade</button>
+          </form>
+        </div>
+
+        <table class="tabela">
+          <caption class="sr">Pacientes do plantão ordenados por gravidade</caption>
+          <thead>
+            <tr>
+              <th scope="col">Nº</th>
+              <th scope="col">Paciente</th>
+              <th scope="col">CPF</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Gravidade</th>
+              <th scope="col">Situação</th>
+              <th scope="col">Chegada</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr class="g3">
+                <td class="num" data-label="Nº">1</td>
+                <td class="col-paciente" data-label="Paciente"><div class="cel-paciente"><span class="avatar g3-bg" aria-hidden="true">PH</span><strong>Pedro Henrique</strong></div></td>
+                <td class="mono" data-label="CPF">555.666.777-88</td>
+                <td class="mono" data-label="Telefone">(71) 98111-2233</td>
+                <td data-label="Gravidade"><span class="pill g3"><b aria-hidden="true">3</b>Emergência</span></td>
+                <td data-label="Situação"><span class="pill sit-leito">Em leito</span><small>Setor 2 · L0</small></td>
+                <td class="mono" data-label="Chegada"><time datetime="18:52">18:52</time></td>
+              </tr>
+              <tr class="g3">
+                <td class="num" data-label="Nº">2</td>
+                <td class="col-paciente" data-label="Paciente"><div class="cel-paciente"><span class="avatar g3-bg" aria-hidden="true">LP</span><strong>Luana Prado</strong></div></td>
+                <td class="mono" data-label="CPF">666.777.888-99</td>
+                <td class="mono" data-label="Telefone">(71) 98222-3344</td>
+                <td data-label="Gravidade"><span class="pill g3"><b aria-hidden="true">3</b>Emergência</span></td>
+                <td data-label="Situação"><span class="pill sit-leito">Em leito</span><small>Setor 2 · L1</small></td>
+                <td class="mono" data-label="Chegada"><time datetime="19:05">19:05</time></td>
+              </tr>
+              <tr class="g3">
+                <td class="num" data-label="Nº">3</td>
+                <td class="col-paciente" data-label="Paciente"><div class="cel-paciente"><span class="avatar g3-bg" aria-hidden="true">MS</span><strong>Maria Souza</strong></div></td>
+                <td class="mono" data-label="CPF">123.456.789-00</td>
+                <td class="mono" data-label="Telefone">(71) 99999-0000</td>
+                <td data-label="Gravidade"><span class="pill g3"><b aria-hidden="true">3</b>Emergência</span></td>
+                <td data-label="Situação"><span class="pill sit-leito">Em leito</span><small>Setor 2 · L2</small></td>
+                <td class="mono" data-label="Chegada"><time datetime="19:20">19:20</time></td>
+              </tr>
+              <tr class="g3">
+                <td class="num" data-label="Nº">4</td>
+                <td class="col-paciente" data-label="Paciente"><div class="cel-paciente"><span class="avatar g3-bg" aria-hidden="true">CM</span><strong>Carlos Mendes</strong></div></td>
+                <td class="mono" data-label="CPF">111.222.333-44</td>
+                <td class="mono" data-label="Telefone">(71) 98888-1111</td>
+                <td data-label="Gravidade"><span class="pill g3"><b aria-hidden="true">3</b>Emergência</span></td>
+                <td data-label="Situação"><span class="pill sit-fila">Na fila</span><small>Posição 1</small></td>
+                <td class="mono" data-label="Chegada"><time datetime="19:42">19:42</time></td>
+              </tr>
+              <tr class="g3">
+                <td class="num" data-label="Nº">5</td>
+                <td class="col-paciente" data-label="Paciente"><div class="cel-paciente"><span class="avatar g3-bg" aria-hidden="true">RA</span><strong>Rita Alves</strong></div></td>
+                <td class="mono" data-label="CPF">333.444.555-66</td>
+                <td class="mono" data-label="Telefone">(71) 98777-2222</td>
+                <td data-label="Gravidade"><span class="pill g3"><b aria-hidden="true">3</b>Emergência</span></td>
+                <td data-label="Situação"><span class="pill sit-fila">Na fila</span><small>Posição 2</small></td>
+                <td class="mono" data-label="Chegada"><time datetime="19:44">19:44</time></td>
+              </tr>
+              <tr class="g2">
+                <td class="num" data-label="Nº">6</td>
+                <td class="col-paciente" data-label="Paciente"><div class="cel-paciente"><span class="avatar g2-bg" aria-hidden="true">BT</span><strong>Bruno Teixeira</strong></div></td>
+                <td class="mono" data-label="CPF">777.888.999-00</td>
+                <td class="mono" data-label="Telefone">(71) 98333-4455</td>
+                <td data-label="Gravidade"><span class="pill g2"><b aria-hidden="true">2</b>Urgente</span></td>
+                <td data-label="Situação"><span class="pill sit-alta">Liberado</span><small>Liberado 19:40</small></td>
+                <td class="mono" data-label="Chegada"><time datetime="18:40">18:40</time></td>
+              </tr>
+              <tr class="g2">
+                <td class="num" data-label="Nº">7</td>
+                <td class="col-paciente" data-label="Paciente"><div class="cel-paciente"><span class="avatar g2-bg" aria-hidden="true">CR</span><strong>Camila Rocha</strong></div></td>
+                <td class="mono" data-label="CPF">888.999.000-11</td>
+                <td class="mono" data-label="Telefone">(71) 98444-5566</td>
+                <td data-label="Gravidade"><span class="pill g2"><b aria-hidden="true">2</b>Urgente</span></td>
+                <td data-label="Situação"><span class="pill sit-leito">Em leito</span><small>Setor 1 · L0</small></td>
+                <td class="mono" data-label="Chegada"><time datetime="19:02">19:02</time></td>
+              </tr>
+              <tr class="g2">
+                <td class="num" data-label="Nº">8</td>
+                <td class="col-paciente" data-label="Paciente"><div class="cel-paciente"><span class="avatar g2-bg" aria-hidden="true">AP</span><strong>Ana Paula</strong></div></td>
+                <td class="mono" data-label="CPF">222.333.444-55</td>
+                <td class="mono" data-label="Telefone">(71) 98666-3333</td>
+                <td data-label="Gravidade"><span class="pill g2"><b aria-hidden="true">2</b>Urgente</span></td>
+                <td data-label="Situação"><span class="pill sit-fila">Na fila</span><small>Posição 3</small></td>
+                <td class="mono" data-label="Chegada"><time datetime="19:31">19:31</time></td>
+              </tr>
+              <tr class="g2">
+                <td class="num" data-label="Nº">9</td>
+                <td class="col-paciente" data-label="Paciente"><div class="cel-paciente"><span class="avatar g2-bg" aria-hidden="true">FN</span><strong>Fábio Nunes</strong></div></td>
+                <td class="mono" data-label="CPF">444.555.666-77</td>
+                <td class="mono" data-label="Telefone">(71) 98555-4444</td>
+                <td data-label="Gravidade"><span class="pill g2"><b aria-hidden="true">2</b>Urgente</span></td>
+                <td data-label="Situação"><span class="pill sit-fila">Na fila</span><small>Posição 4</small></td>
+                <td class="mono" data-label="Chegada"><time datetime="19:38">19:38</time></td>
+              </tr>
+              <tr class="g1">
+                <td class="num" data-label="Nº">10</td>
+                <td class="col-paciente" data-label="Paciente"><div class="cel-paciente"><span class="avatar g1-bg" aria-hidden="true">SM</span><strong>Sônia Martins</strong></div></td>
+                <td class="mono" data-label="CPF">999.000.111-22</td>
+                <td class="mono" data-label="Telefone">(71) 98666-7788</td>
+                <td data-label="Gravidade"><span class="pill g1"><b aria-hidden="true">1</b>Pouco urgente</span></td>
+                <td data-label="Situação"><span class="pill sit-leito">Em leito</span><small>Setor 0 · L1</small></td>
+                <td class="mono" data-label="Chegada"><time datetime="18:58">18:58</time></td>
+              </tr>
+              <tr class="g1">
+                <td class="num" data-label="Nº">11</td>
+                <td class="col-paciente" data-label="Paciente"><div class="cel-paciente"><span class="avatar g1-bg" aria-hidden="true">JL</span><strong>João Lima</strong></div></td>
+                <td class="mono" data-label="CPF">987.654.321-00</td>
+                <td class="mono" data-label="Telefone">(71) 98444-5555</td>
+                <td data-label="Gravidade"><span class="pill g1"><b aria-hidden="true">1</b>Pouco urgente</span></td>
+                <td data-label="Situação"><span class="pill sit-fila">Na fila</span><small>Posição 5</small></td>
+                <td class="mono" data-label="Chegada"><time datetime="19:35">19:35</time></td>
+              </tr>
+              <tr class="g1">
+                <td class="num" data-label="Nº">12</td>
+                <td class="col-paciente" data-label="Paciente"><div class="cel-paciente"><span class="avatar g1-bg" aria-hidden="true">DF</span><strong>Diego Farias</strong></div></td>
+                <td class="mono" data-label="CPF">000.111.222-33</td>
+                <td class="mono" data-label="Telefone">(71) 98777-8899</td>
+                <td data-label="Gravidade"><span class="pill g1"><b aria-hidden="true">1</b>Pouco urgente</span></td>
+                <td data-label="Situação"><span class="pill sit-fila">Na fila</span><small>Posição 6</small></td>
+                <td class="mono" data-label="Chegada"><time datetime="19:47">19:47</time></td>
+              </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
+
+    <footer class="rodape">
+      <p><strong>VitaCare</strong> · Projeto de Lógica de Programação · Prof. Leonardo Lucena</p>
+      <p>Antonio Bernardo · Guilherme Linhares · João Pedro · Lucas Rafael</p>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

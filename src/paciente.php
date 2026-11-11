@@ -1,27 +1,28 @@
 <?php
-$listaPacientes = [];
-$paciente = [
-    "nome" => "",
-    "cpf" => (int)'',
-    "telefone" => (int)"",
-    "gravidade" => (int) ""
+$testePaciente = [
+    'nome'      => 'Gui',
+    'cpf'       => '123',
+    'telefone'  => '123',
+    'gravidade' => 1
 ];
-
-
-
-
+//var_dump($testePaciente);
+$teste = cadastrarPaciente($testePaciente);
+//var_dump($teste);
 /**
  * Essa funcao ira servir para cadastrar o paciente:
  * Essa funcao ira cadastrar os dados do paciente e salvar em um arquivo json
  */
 function cadastrarPaciente(array $paciente){
 
-    $nome = $paciente['nome'];
-    $cpf = $paciente['cpf'];
-    $telefone = $paciente['telefone'];
-    $gravidade = $paciente['gravidade'];
+    $caminho = '../dados/paciente.json';
 
-    $resultado = file_put_contents('../dados/paciente.json', $paciente, FILE_APPEND);
+    $lista = file_exists($caminho) ? json_decode(file_get_contents($caminho), true) : [];
+
+    $lista[] = $paciente;
+
+    $jsonPaciente = json_encode($lista, JSON_PRETTY_PRINT);
+
+    $resultado = file_put_contents($caminho, $jsonPaciente);
 
     //Pegar o conteudo $paciente e tentar salvar em um arquivo
     if ($resultado === false) {

@@ -1,0 +1,901 @@
+/* =========================================================
+   VitaCare · Sistema de Triagem Hospitalar
+   Folha de estilo única — somente HTML + CSS (sem JavaScript)
+   ---------------------------------------------------------
+   Sumário
+    1. Variáveis · tema claro
+    2. Variáveis · tema escuro automático
+    3. Base e utilitários
+    4. Layout geral
+    5. Menu lateral
+    6. Barra superior
+    7. Avatares e status
+    8. Botões e foco
+    9. Banner principal (hero)
+   10. Alerta de setor lotado
+   11. Pílulas de gravidade
+   12. Indicadores (KPIs)
+   13. Cards
+   14. Formulário de cadastro
+   15. Fila de espera
+   16. Mapa de leitos
+   17. Busca e relatório rápido
+   18. Histórico (linha do tempo)
+   19. Equipe médica
+   20. Distribuição por gravidade
+   21. Página de relatório (tabela)
+   22. Página de feedback
+   23. Rodapé
+   24. Responsivo
+   25. Preferências do usuário (movimento e impressão)
+   ========================================================= */
+
+
+/* =========================================================
+   1. Variáveis · tema claro
+   Todos os textos foram conferidos com contraste WCAG AA
+   (≥ 4,5:1 para texto, ≥ 3:1 para bordas de campos e foco).
+   ========================================================= */
+:root {
+  color-scheme: light dark;
+
+  /* Superfícies */
+  --bg: #eef2f7;
+  --card: #ffffff;
+  --superficie: #f6f8fb;          /* itens dentro dos cards */
+  --superficie-hover: #edf1f6;
+  --campo: #f8fafc;               /* fundo de inputs */
+  --campo-foco: #ffffff;
+  --topbar-bg: rgba(238, 242, 247, .86);
+
+  /* Texto e bordas */
+  --texto: #0f1d33;
+  --suave: #55637a;
+  --borda: #e3e9f1;
+  --borda-campo: #8794a8;
+  --foco: #0a7f72;
+
+  /* Cor principal (verde-água) */
+  --primaria: #0e9f8e;
+  --primaria-forte: #0a7f72;      /* fundo de botões com texto branco */
+  --primaria-forte-hover: #086a5f;
+  --primaria-texto: #08695e;      /* links e textos sobre fundo claro */
+  --primaria-clara: #e0f6f3;
+  --primaria-borda: #bdeae3;
+
+  /* Menu lateral (sempre escuro) */
+  --sidebar: #0c1a30;
+  --sidebar-2: #13264a;
+  --sidebar-texto: #c7d3e8;
+  --sidebar-suave: #93a3c2;
+  --sidebar-destaque: #5ff0d4;
+
+  /* Gravidade: verde = 1, amarelo = 2, vermelho = 3 */
+  --g1: #22b86b;  --g1-claro: #e3f8ec;  --g1-texto: #0f6b3d;  --g1-borda: #aee8c8;
+  --g2: #f2a516;  --g2-claro: #fff4dc;  --g2-texto: #855700;  --g2-borda: #f6d58e;
+  --g3: #ef4565;  --g3-claro: #ffe6eb;  --g3-texto: #b01c42;  --g3-borda: #f8b3c1;
+  --g3-listra: #ffd3dc;
+  --texto-sobre-cor: #0f1d33;     /* texto sobre verde/amarelo/vermelho sólidos */
+  --alerta-forte: #c81e45;        /* fundo vermelho com texto branco */
+
+  /* Cores de apoio */
+  --azul: #2f66db;   --azul-claro: #e5eeff;
+  --roxo: #7c4fe6;   --roxo-claro: #efe8ff;
+
+  /* Banner */
+  --hero-1: #087266;
+  --hero-2: #0a6c86;
+  --hero-3: #1d4fb8;
+
+  /* Forma */
+  --raio: 18px;
+  --raio-sm: 12px;
+  --sombra: 0 1px 2px rgba(15, 29, 51, .04), 0 8px 24px rgba(15, 29, 51, .06);
+  --sombra-hover: 0 2px 4px rgba(15, 29, 51, .05), 0 14px 32px rgba(15, 29, 51, .10);
+}
+
+
+/* =========================================================
+   2. Variáveis · tema escuro automático
+   Só troca as variáveis; os componentes não mudam.
+   ========================================================= */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a1322;
+    --card: #111c30;
+    --superficie: #16233a;
+    --superficie-hover: #1b2a45;
+    --campo: #0d1729;
+    --campo-foco: #0f1b30;
+    --topbar-bg: rgba(10, 19, 34, .84);
+
+    --texto: #e7eef8;
+    --suave: #9fb0c9;
+    --borda: #22314c;
+    --borda-campo: #63748f;
+    --foco: #5eead4;
+
+    --primaria-texto: #5eead4;
+    --primaria-clara: #0c3531;
+    --primaria-borda: #165c55;
+
+    --sidebar: #060d1a;
+    --sidebar-2: #0c1a30;
+
+    --g1-claro: #0f3324;  --g1-texto: #6ee7a8;  --g1-borda: #1d6a45;
+    --g2-claro: #3a2b0b;  --g2-texto: #fbc65a;  --g2-borda: #7a5a16;
+    --g3-claro: #3d1424;  --g3-texto: #ff9db1;  --g3-borda: #7f2a43;
+    --g3-listra: #4a1a2c;
+
+    --azul-claro: #16264a;
+    --roxo-claro: #251c45;
+
+    --hero-1: #065a51;
+    --hero-2: #08566c;
+    --hero-3: #173f94;
+
+    --sombra: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    --sombra-hover: 0 2px 4px rgba(0, 0, 0, .35), 0 14px 32px rgba(0, 0, 0, .35);
+  }
+}
+
+
+/* =========================================================
+   3. Base e utilitários
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--texto);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+small { display: block; color: var(--suave); font-size: .78rem; }
+
+/* Esconde visualmente, mas mantém para leitores de tela */
+.sr {
+  position: absolute !important;
+  width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%);
+  white-space: nowrap; border: 0;
+}
+
+/* Link "Pular para o conteúdo" (aparece só com o teclado) */
+.pular {
+  position: absolute; left: 16px; top: -80px; z-index: 100;
+  background: var(--primaria-forte); color: #fff; font-weight: 700;
+  padding: 12px 18px; border-radius: var(--raio-sm); box-shadow: var(--sombra);
+  transition: top .2s;
+}
+.pular:focus { top: 12px; }
+
+
+/* =========================================================
+   4. Layout geral
+   ========================================================= */
+.app { display: flex; min-height: 100vh; }
+.conteudo { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+main { flex: 1; width: 100%; padding: 4px 16px 24px; }
+
+
+/* =========================================================
+   5. Menu lateral
+   No celular abre com o checkbox #menu-toggle (sem JS).
+   ========================================================= */
+.menu-toggle { position: absolute; opacity: 0; width: 1px; height: 1px; }
+
+.sidebar {
+  --foco: var(--sidebar-destaque);
+  position: fixed; inset: 0 auto 0 0; z-index: 50;
+  width: min(280px, 86vw);
+  display: flex; flex-direction: column; gap: 24px;
+  padding: 24px 18px; overflow-y: auto;
+  background: linear-gradient(180deg, var(--sidebar), var(--sidebar-2));
+  color: var(--sidebar-texto);
+  transform: translateX(-100%); visibility: hidden;
+  transition: transform .3s ease, visibility .3s;
+}
+.menu-toggle:checked ~ .app .sidebar {
+  transform: translateX(0); visibility: visible;
+  box-shadow: 12px 0 40px rgba(0, 0, 0, .3);
+}
+
+.overlay {
+  position: fixed; inset: 0; z-index: 40;
+  background: rgba(12, 26, 48, .55);
+  backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px);
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+.menu-toggle:checked ~ .app .overlay { opacity: 1; pointer-events: auto; }
+
+.logo { display: flex; align-items: center; gap: 12px; padding: 0 6px; }
+.logo-icone {
+  width: 44px; height: 44px; border-radius: 13px; flex-shrink: 0;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, #19d3b4, var(--primaria));
+  color: #fff; font-size: 1.4rem; font-weight: 800;
+  box-shadow: 0 6px 18px rgba(25, 211, 180, .35);
+}
+.logo strong { color: #fff; font-size: 1.15rem; display: block; line-height: 1.2; }
+.logo small { color: var(--sidebar-suave); }
+
+.nav { display: flex; flex-direction: column; gap: 3px; }
+.nav-titulo {
+  font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+  color: var(--sidebar-suave); margin: 14px 10px 6px;
+}
+.nav a {
+  position: relative; display: flex; align-items: center; gap: 12px;
+  min-height: 44px; padding: 10px 12px; border-radius: var(--raio-sm);
+  font-weight: 500; font-size: .92rem;
+  transition: background .2s, color .2s;
+}
+.nav a span { width: 22px; text-align: center; }
+.nav a:hover { background: rgba(255, 255, 255, .07); color: #fff; }
+.nav a.ativo { background: rgba(25, 211, 180, .14); color: var(--sidebar-destaque); font-weight: 700; }
+.nav a.ativo::before {
+  content: ""; position: absolute; left: -18px; top: 10px; bottom: 10px;
+  width: 4px; border-radius: 0 4px 4px 0; background: var(--sidebar-destaque);
+}
+.badge {
+  margin-left: auto; font-style: normal; font-size: .7rem; font-weight: 700;
+  background: var(--alerta-forte); color: #fff; padding: 2px 8px; border-radius: 999px;
+}
+
+.plantao {
+  margin-top: auto; display: flex; align-items: center; gap: 12px;
+  padding: 14px; border-radius: 14px;
+  background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .08);
+}
+.plantao strong { color: #fff; display: block; font-size: .9rem; }
+.plantao small { color: var(--sidebar-suave); }
+.pulso {
+  width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; background: #2ee59d;
+  box-shadow: 0 0 0 0 rgba(46, 229, 157, .6); animation: pulso 2s infinite;
+}
+@keyframes pulso {
+  70%  { box-shadow: 0 0 0 10px rgba(46, 229, 157, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 229, 157, 0); }
+}
+
+
+/* =========================================================
+   6. Barra superior
+   ========================================================= */
+.topbar {
+  position: sticky; top: 0; z-index: 30;
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: var(--topbar-bg);
+  backdrop-filter: blur(12px) saturate(1.4); -webkit-backdrop-filter: blur(12px) saturate(1.4);
+  border-bottom: 1px solid var(--borda);
+}
+.hamburguer {
+  width: 44px; height: 44px; border-radius: var(--raio-sm); flex-shrink: 0; cursor: pointer;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px;
+  background: var(--card); box-shadow: var(--sombra);
+}
+.hamburguer span { width: 18px; height: 2px; background: var(--texto); border-radius: 2px; }
+/* O foco fica no checkbox invisível; mostramos o contorno no botão */
+.menu-toggle:focus-visible ~ .app .hamburguer { outline: 3px solid var(--foco); outline-offset: 3px; }
+
+.topbar-titulo { flex: 1; min-width: 0; }
+.topbar h1 { font-size: 1.15rem; font-weight: 800; letter-spacing: -.01em; line-height: 1.25; }
+.topbar p { font-size: .8rem; color: var(--suave); }
+.usuario { display: flex; align-items: center; gap: 10px; }
+.usuario-info { display: none; }
+.usuario-info strong { font-size: .88rem; display: block; line-height: 1.2; }
+
+
+/* =========================================================
+   7. Avatares e status
+   ========================================================= */
+.avatar {
+  position: relative; width: 40px; height: 40px; border-radius: var(--raio-sm); flex-shrink: 0;
+  display: grid; place-items: center; font-weight: 700; font-size: .8rem;
+  background: linear-gradient(135deg, var(--azul), var(--roxo)); color: #fff;
+}
+.avatar.grande { width: 54px; height: 54px; font-size: 1rem; border-radius: 15px; }
+
+/* Fundos sólidos de gravidade (avatares, barras) */
+.g1-bg { background: var(--g1); color: var(--texto-sobre-cor); }
+.g2-bg { background: var(--g2); color: var(--texto-sobre-cor); }
+.g3-bg { background: var(--g3); color: var(--texto-sobre-cor); }
+
+.med1 { background: linear-gradient(135deg, #1f4fbf, #2f66db); }
+.med2 { background: linear-gradient(135deg, #b81a40, #cf2f55); }
+.med3 { background: linear-gradient(135deg, #075f55, #0a7a6d); }
+.med4 { background: linear-gradient(135deg, #6236cf, #7c4fe6); }
+
+.status {
+  position: absolute; right: -3px; bottom: -3px; width: 13px; height: 13px;
+  border-radius: 50%; border: 2.5px solid var(--card);
+}
+.status.on { background: var(--g1); }
+.status.ocupado { background: var(--g2); }
+
+
+/* =========================================================
+   8. Botões e foco
+   ========================================================= */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font: inherit; font-weight: 700; font-size: .92rem; text-align: center;
+  min-height: 46px; padding: 0 20px; border-radius: var(--raio-sm); border: 0; cursor: pointer;
+  transition: transform .15s, background .2s, box-shadow .2s, border-color .2s;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+.btn.largo { width: 100%; }
+
+.btn-primario { background: var(--primaria-forte); color: #fff; box-shadow: 0 6px 16px rgba(14, 159, 142, .28); }
+.btn-primario:hover { background: var(--primaria-forte-hover); }
+.btn-branco { background: #fff; color: #08695e; box-shadow: 0 6px 16px rgba(0, 0, 0, .12); }
+.btn-branco:hover { background: #f0fbf9; }
+.btn-vidro { background: rgba(255, 255, 255, .16); color: #fff; border: 1px solid rgba(255, 255, 255, .4); }
+.btn-vidro:hover { background: rgba(255, 255, 255, .26); }
+.btn-escuro { background: var(--texto); color: var(--card); }
+.btn-contorno { background: transparent; color: var(--g3-texto); border: 2px solid var(--g3-borda); }
+.btn-contorno:hover { background: var(--g3-claro); border-color: var(--g3); }
+.btn-alerta { background: var(--alerta-forte); color: #fff; }
+.btn-alerta:hover { background: #a8173a; }
+.btn-neutro { background: var(--superficie); color: var(--texto); border: 1.5px solid var(--borda); }
+.btn-neutro:hover { background: var(--superficie-hover); }
+
+/* Foco visível em tudo que é clicável */
+:focus-visible { outline: 3px solid var(--foco); outline-offset: 3px; }
+
+
+/* =========================================================
+   9. Banner principal (hero)
+   ========================================================= */
+.hero {
+  --foco: #fff;
+  position: relative; overflow: hidden; isolation: isolate;
+  display: grid; gap: 22px; padding: 26px 22px; border-radius: 24px; color: #fff;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(255, 255, 255, .12), transparent 40%),
+    radial-gradient(circle at 10% 110%, rgba(61, 124, 245, .4), transparent 50%),
+    linear-gradient(135deg, var(--hero-1) 0%, var(--hero-2) 55%, var(--hero-3) 100%);
+  box-shadow: 0 18px 40px rgba(11, 127, 154, .25);
+}
+.hero::after {
+  content: "✚"; position: absolute; right: -20px; bottom: -70px; z-index: -1;
+  font-size: 15rem; font-weight: 800; color: rgba(255, 255, 255, .06); pointer-events: none;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: .75rem; font-weight: 600; margin-bottom: 14px;
+  background: rgba(255, 255, 255, .16); padding: 5px 12px; border-radius: 999px;
+}
+.hero-tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #5ff0b0; }
+.hero h2 { font-size: 1.55rem; line-height: 1.2; font-weight: 800; letter-spacing: -.02em; max-width: 520px; }
+.hero p { margin-top: 10px; color: rgba(255, 255, 255, .92); max-width: 480px; font-size: .95rem; }
+.hero-botoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+
+.hero-proximo {
+  align-self: center; padding: 18px; border-radius: 18px;
+  background: rgba(6, 30, 50, .28); border: 1px solid rgba(255, 255, 255, .22);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.proximo-rotulo {
+  margin: 0; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+  color: rgba(255, 255, 255, .92);
+}
+.proximo-card { display: flex; align-items: center; gap: 14px; margin: 12px 0 14px; }
+.proximo-card strong { display: block; font-size: 1.05rem; }
+.proximo-card small { color: rgba(255, 255, 255, .92); margin-top: 4px; }
+.hero-proximo .avatar { border: 3px solid rgba(255, 255, 255, .55); }
+.hero .aviso-lotado {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+  padding: 8px 12px; border-radius: 10px;
+  background: #fff; color: #b01c42; font-size: .8rem; font-weight: 700;
+}
+
+
+/* =========================================================
+   10. Alerta de setor lotado
+   O PHP exibe este bloco só quando o setor do próximo
+   paciente não tiver nenhum leito livre.
+   ========================================================= */
+.alerta {
+  display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+  margin-top: 18px; padding: 18px; border-radius: var(--raio);
+  background: var(--g3-claro); border: 1px solid var(--g3-borda); border-left: 6px solid var(--g3);
+  box-shadow: var(--sombra);
+}
+.alerta-icone {
+  width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--alerta-forte); color: #fff; font-size: 1.25rem; font-weight: 800;
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--g3) 18%, transparent);
+}
+.alerta h2 { font-size: 1rem; font-weight: 800; color: var(--g3-texto); line-height: 1.3; }
+.alerta p { font-size: .88rem; margin-top: 4px; }
+.alerta .btn { grid-column: 1 / -1; }
+
+
+/* =========================================================
+   11. Pílulas de gravidade
+   ========================================================= */
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: .72rem; font-weight: 700; padding: 3px 10px 3px 4px; border-radius: 999px; white-space: nowrap;
+}
+.pill b {
+  display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%;
+  font-size: .68rem; color: var(--texto-sobre-cor);
+}
+.pill.g1 { background: var(--g1-claro); color: var(--g1-texto); }
+.pill.g2 { background: var(--g2-claro); color: var(--g2-texto); }
+.pill.g3 { background: var(--g3-claro); color: var(--g3-texto); }
+.pill.g1 b { background: var(--g1); }
+.pill.g2 b { background: var(--g2); }
+.pill.g3 b { background: var(--g3); }
+.hero .pill.g3 { background: #fff; color: #b01c42; }
+
+/* Pílulas de situação (relatório) */
+.pill.sit-fila { background: var(--azul-claro); color: var(--texto); padding-left: 10px; }
+.pill.sit-leito { background: var(--primaria-clara); color: var(--primaria-texto); padding-left: 10px; }
+.pill.sit-alta { background: var(--superficie-hover); color: var(--suave); padding-left: 10px; }
+
+
+/* =========================================================
+   12. Indicadores (KPIs)
+   ========================================================= */
+.kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0; }
+.kpi {
+  position: relative; display: flex; flex-direction: column; gap: 12px;
+  padding: 16px; border-radius: var(--raio);
+  background: var(--card); box-shadow: var(--sombra);
+  transition: box-shadow .2s, transform .2s;
+}
+.kpi:hover { box-shadow: var(--sombra-hover); transform: translateY(-2px); }
+.kpi-icone { width: 42px; height: 42px; border-radius: var(--raio-sm); display: grid; place-items: center; font-size: 1.2rem; }
+.kpi-num { display: block; font-size: 1.7rem; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
+.kpi-num small { display: inline; font-size: .95rem; color: var(--suave); font-weight: 600; }
+.kpi-rot { display: block; margin-top: 4px; font-size: .8rem; color: var(--suave); font-weight: 500; }
+.kpi-trend {
+  position: absolute; top: 16px; right: 14px;
+  font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 8px;
+  background: var(--bg); color: var(--suave);
+}
+.kpi-trend.sobe { background: var(--g1-claro); color: var(--g1-texto); }
+.barra { height: 6px; background: var(--bg); border-radius: 99px; overflow: hidden; }
+.barra span { display: block; height: 100%; background: linear-gradient(90deg, var(--g2), var(--g3)); border-radius: 99px; }
+
+/* Fundos claros dos ícones */
+.azul { background: var(--azul-claro); }
+.verde { background: var(--g1-claro); }
+.amarelo { background: var(--g2-claro); }
+.rosa { background: var(--g3-claro); }
+.roxo { background: var(--roxo-claro); }
+
+
+/* =========================================================
+   13. Cards
+   Cada card é um "container": o conteúdo se adapta à largura
+   do próprio card, e não só da tela (container queries).
+   ========================================================= */
+.grade { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.card {
+  container-type: inline-size;
+  min-width: 0; padding: 20px; border-radius: var(--raio);
+  background: var(--card); box-shadow: var(--sombra);
+  border: 1px solid transparent;
+}
+.card-topo { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
+.card-topo h2 { font-size: 1.05rem; font-weight: 800; letter-spacing: -.01em; }
+.card-topo p { font-size: .82rem; color: var(--suave); }
+.card-icone { width: 40px; height: 40px; border-radius: var(--raio-sm); display: grid; place-items: center; font-size: 1.1rem; flex-shrink: 0; }
+.contador {
+  font-size: .75rem; font-weight: 700; white-space: nowrap;
+  background: var(--primaria-clara); color: var(--primaria-texto); padding: 5px 11px; border-radius: 999px;
+}
+.link-mais { display: inline-flex; align-items: center; min-height: 32px; margin-top: 12px; font-size: .85rem; font-weight: 700; color: var(--primaria-texto); }
+.link-mais:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+
+/* =========================================================
+   14. Formulário de cadastro
+   ========================================================= */
+.form { display: flex; flex-direction: column; gap: 16px; }
+.campos-2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.campo { display: flex; flex-direction: column; gap: 6px; border: 0; min-width: 0; }
+.campo label, .campo legend { font-size: .82rem; font-weight: 700; margin-bottom: 2px; }
+.campo small { font-size: .74rem; }
+
+input[type="text"], input[type="tel"], select {
+  width: 100%; min-height: 46px; padding: 0 14px;
+  font: inherit; font-size: .92rem; color: var(--texto);
+  border-radius: var(--raio-sm); border: 1.5px solid var(--borda-campo); background: var(--campo);
+  transition: border-color .2s, background .2s, box-shadow .2s;
+}
+input::placeholder { color: var(--suave); opacity: 1; }
+input:hover, select:hover { border-color: var(--suave); }
+input:focus, select:focus {
+  border-color: var(--primaria-forte); background: var(--campo-foco);
+  outline: 3px solid var(--foco); outline-offset: 1px;
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--primaria) 14%, transparent);
+}
+input:not(:placeholder-shown):invalid { border-color: var(--g3); }
+input:not(:placeholder-shown):valid { border-color: var(--g1); }
+
+.gravidades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.grav { position: relative; cursor: pointer; }
+.grav input { position: absolute; opacity: 0; }
+.grav-box {
+  position: relative; height: 100%;
+  display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2px;
+  padding: 12px 6px; border-radius: 14px;
+  border: 2px solid var(--borda); background: var(--campo);
+  transition: border-color .2s, background .2s, transform .15s;
+}
+.grav-box b {
+  width: 30px; height: 30px; border-radius: 50%; margin-bottom: 4px;
+  display: grid; place-items: center; font-size: .9rem; color: var(--texto-sobre-cor);
+}
+.grav-box strong { font-size: .78rem; line-height: 1.2; }
+.grav-box small { font-size: .68rem; }
+.g1 .grav-box b { background: var(--g1); }
+.g2 .grav-box b { background: var(--g2); }
+.g3 .grav-box b { background: var(--g3); }
+.grav:hover .grav-box { border-color: var(--borda-campo); transform: translateY(-1px); }
+.grav.g1 input:checked + .grav-box { border-color: var(--g1); background: var(--g1-claro); }
+.grav.g2 input:checked + .grav-box { border-color: var(--g2); background: var(--g2-claro); }
+.grav.g3 input:checked + .grav-box { border-color: var(--g3); background: var(--g3-claro); }
+/* Marca de seleção: não depende só da cor */
+.grav input:checked + .grav-box::after {
+  content: "✓"; position: absolute; top: 6px; right: 8px;
+  font-size: .8rem; font-weight: 800; color: var(--texto);
+}
+.grav input:focus-visible + .grav-box { outline: 3px solid var(--foco); outline-offset: 2px; }
+
+@container (min-width: 420px) {
+  .campos-2 { grid-template-columns: 1fr 1fr; }
+  .grav-box { padding: 14px 8px; }
+  .grav-box strong { font-size: .85rem; }
+}
+
+
+/* =========================================================
+   15. Fila de espera
+   ========================================================= */
+.fila { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.paciente {
+  display: flex; align-items: center; gap: 12px; padding: 10px 12px 10px 10px;
+  border-radius: 14px; background: var(--superficie); border-left: 4px solid;
+  transition: background .2s;
+}
+.paciente:hover { background: var(--superficie-hover); }
+.paciente.g1 { border-color: var(--g1); }
+.paciente.g2 { border-color: var(--g2); }
+.paciente.g3 { border-color: var(--g3); }
+.pos { font-weight: 800; color: var(--suave); width: 16px; text-align: center; font-size: .85rem; flex-shrink: 0; }
+.pac-info { flex: 1; min-width: 0; }
+.pac-info strong { display: block; font-size: .9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pac-info small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Em cards estreitos a pílula mostra só o número do nível */
+.paciente .pill-texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.paciente .pill { padding-right: 4px; }
+@container (min-width: 400px) {
+  .paciente .pill-texto { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
+  .paciente .pill { padding-right: 10px; }
+}
+
+
+/* =========================================================
+   16. Mapa de leitos
+   ========================================================= */
+.legenda { display: flex; gap: 12px; flex-wrap: wrap; font-size: .78rem; color: var(--suave); font-weight: 600; }
+.legenda span { display: flex; align-items: center; gap: 6px; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.dot.livre, .dot.g1 { background: var(--g1); }
+.dot.g2 { background: var(--g2); }
+.dot.ocupado, .dot.g3 { background: var(--g3); }
+.legenda .dot.ocupado { background: repeating-linear-gradient(135deg, var(--g3) 0 2px, var(--g3-listra) 2px 4px); }
+
+.setores { display: grid; gap: 14px; }
+.setor {
+  padding: 16px; border-radius: 16px; background: var(--superficie);
+  border-top: 4px solid; transition: box-shadow .2s;
+}
+.setor.s0 { border-color: var(--g1); }
+.setor.s1 { border-color: var(--g2); }
+.setor.s2 { border-color: var(--g3); }
+.setor.lotado { box-shadow: inset 0 0 0 2px var(--g3); background: color-mix(in srgb, var(--g3-claro) 45%, var(--superficie)); }
+.setor-topo { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 12px; }
+.setor-topo h3 { font-size: .92rem; font-weight: 700; }
+.setor-num { display: block; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--suave); }
+.setor-ocup { font-weight: 800; font-size: .85rem; white-space: nowrap; background: var(--card); padding: 4px 10px; border-radius: 8px; }
+.setor-ocup.lotado { background: var(--alerta-forte); color: #fff; }
+
+.leitos { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.leito {
+  aspect-ratio: 1; border-radius: var(--raio-sm); border: 2px solid;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  transition: transform .15s;
+}
+.leito:hover { transform: scale(1.05); }
+.leito > span { font-size: 1.15rem; line-height: 1; }
+.leito small { font-size: .68rem; font-weight: 700; color: inherit; }
+.leito.livre { background: var(--g1-claro); border-color: var(--g1-borda); color: var(--g1-texto); }
+/* Listras: o "ocupado" também se diferencia sem depender da cor */
+.leito.ocupado {
+  background: repeating-linear-gradient(135deg, var(--g3-claro) 0 6px, var(--g3-listra) 6px 12px);
+  border-color: var(--g3-borda); color: var(--g3-texto);
+}
+
+.liberar {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;
+  margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--borda);
+}
+.liberar-titulo { grid-column: 1 / -1; font-size: .88rem; font-weight: 700; }
+.liberar .btn { grid-column: 1 / -1; }
+
+@container (min-width: 560px) {
+  .liberar { grid-template-columns: auto 1fr 1fr auto; }
+  .liberar-titulo, .liberar .btn { grid-column: auto; }
+  .leito > span { font-size: 1.4rem; }
+}
+/* Card médio (tablet): cada setor vira uma linha, título à esquerda */
+@container (min-width: 560px) and (max-width: 819px) {
+  .setor { display: grid; grid-template-columns: 180px 1fr; align-items: center; gap: 16px; }
+  .setor-topo { flex-direction: column; align-items: flex-start; margin: 0; }
+}
+/* Card largo (desktop): três setores lado a lado */
+@container (min-width: 820px) {
+  .setores { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+
+/* =========================================================
+   17. Busca e relatório rápido
+   ========================================================= */
+.busca { display: flex; flex-direction: column; gap: 10px; }
+.resultado {
+  display: flex; gap: 12px; align-items: center; margin-top: 16px; padding: 14px;
+  border-radius: 14px; background: var(--primaria-clara); border: 1px solid var(--primaria-borda);
+}
+.resultado strong { display: block; font-size: .92rem; }
+.ok { color: var(--g1-texto); }
+
+.relatorio { margin-top: 20px; padding-top: 18px; border-top: 1px dashed var(--borda); }
+.relatorio h3 { font-size: .88rem; font-weight: 700; margin-bottom: 10px; }
+.segmentado { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: var(--raio-sm); background: var(--bg); }
+.segmentado button {
+  min-height: 42px; border: 0; border-radius: 9px; cursor: pointer;
+  font: inherit; font-weight: 700; font-size: .85rem;
+  background: transparent; color: var(--suave); transition: background .2s, color .2s, box-shadow .2s;
+}
+.segmentado button:hover,
+.segmentado button[aria-pressed="true"] { background: var(--card); color: var(--texto); box-shadow: var(--sombra); }
+
+@container (min-width: 340px) {
+  .busca { flex-direction: row; }
+  .busca .btn { flex-shrink: 0; }
+}
+
+
+/* =========================================================
+   18. Histórico (linha do tempo)
+   ========================================================= */
+.timeline { list-style: none; position: relative; margin-bottom: 18px; }
+.timeline::before { content: ""; position: absolute; left: 47px; top: 6px; bottom: 6px; width: 2px; background: var(--borda); }
+.timeline li { position: relative; display: flex; gap: 22px; padding: 8px 0; }
+.timeline time { width: 34px; flex-shrink: 0; padding-top: 1px; font-size: .75rem; font-weight: 700; color: var(--suave); }
+.timeline li::after {
+  content: ""; position: absolute; left: 42px; top: 13px; width: 12px; height: 12px;
+  border-radius: 50%; border: 3px solid var(--card); box-shadow: 0 0 0 1px var(--borda);
+}
+.t-chamada::after { background: var(--azul); }
+.t-cadastro::after { background: var(--primaria); }
+.t-libera::after { background: var(--g2); }
+.timeline strong { display: block; font-size: .88rem; }
+
+
+/* =========================================================
+   19. Equipe médica
+   ========================================================= */
+.medicos { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.medicos li { display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 14px; transition: background .2s; }
+.medicos li:hover { background: var(--superficie); }
+.medico-info { flex: 1; min-width: 0; }
+.medicos strong { display: block; font-size: .9rem; }
+.tag-esp { font-size: .72rem; font-weight: 700; white-space: nowrap; color: var(--suave); background: var(--bg); padding: 4px 9px; border-radius: 8px; }
+
+
+/* =========================================================
+   20. Distribuição por gravidade
+   ========================================================= */
+.barras { display: flex; flex-direction: column; gap: 14px; }
+.barra-linha { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; align-items: center; }
+.barra-linha .rot { display: flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 600; }
+.barra-linha b { font-size: .9rem; }
+.trilho { grid-column: 1 / -1; grid-row: 2; height: 10px; background: var(--bg); border-radius: 99px; overflow: hidden; }
+.trilho span { display: block; height: 100%; border-radius: 99px; }
+
+@container (min-width: 480px) {
+  .barra-linha { grid-template-columns: 140px 1fr 30px; }
+  .trilho { grid-column: auto; grid-row: auto; }
+}
+
+
+/* =========================================================
+   21. Página de relatório (tabela)
+   Em telas estreitas cada linha vira um cartão.
+   ========================================================= */
+.ferramentas { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+.ferramentas .segmentado { min-width: 260px; }
+.ferramentas-rotulo { font-size: .82rem; font-weight: 700; color: var(--suave); }
+
+.tabela { width: 100%; border-collapse: separate; border-spacing: 0; font-size: .88rem; }
+.tabela th {
+  text-align: left; white-space: nowrap; padding: 10px 12px;
+  font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--suave); background: var(--superficie); border-bottom: 1px solid var(--borda);
+}
+.tabela th:first-child { border-radius: 10px 0 0 10px; }
+.tabela th:last-child { border-radius: 0 10px 10px 0; }
+.tabela td { padding: 12px; border-bottom: 1px solid var(--borda); vertical-align: middle; }
+.tabela tbody tr { transition: background .2s; }
+.tabela tbody tr:hover { background: var(--superficie); }
+.tabela tbody tr:last-child td { border-bottom: 0; }
+.tabela .num { font-weight: 800; color: var(--suave); width: 40px; }
+.tabela tr.g1 td:first-child { box-shadow: inset 4px 0 0 var(--g1); }
+.tabela tr.g2 td:first-child { box-shadow: inset 4px 0 0 var(--g2); }
+.tabela tr.g3 td:first-child { box-shadow: inset 4px 0 0 var(--g3); }
+.cel-paciente { display: flex; align-items: center; gap: 10px; }
+.cel-paciente strong { display: block; white-space: nowrap; }
+.tabela .mono { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+@container (max-width: 699px) {
+  .tabela thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .tabela, .tabela tbody, .tabela tr, .tabela td { display: block; width: 100%; }
+  .tabela tbody { display: flex; flex-direction: column; gap: 10px; }
+  .tabela tbody tr {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px;
+    padding: 14px; border-radius: 14px; background: var(--superficie); border-left: 4px solid var(--borda);
+  }
+  .tabela tr.g1 { border-left-color: var(--g1); }
+  .tabela tr.g2 { border-left-color: var(--g2); }
+  .tabela tr.g3 { border-left-color: var(--g3); }
+  .tabela tr[class] td:first-child { box-shadow: none; }
+  .tabela td { padding: 0; border: 0; }
+  .tabela td::before {
+    content: attr(data-label); display: block; margin-bottom: 2px;
+    font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--suave);
+  }
+  .tabela td.num, .tabela td.col-paciente { grid-column: 1 / -1; }
+  .tabela td.num::before { display: inline; margin-right: 6px; }
+  .tabela td.col-paciente::before { display: none; }
+}
+
+
+/* =========================================================
+   22. Página de feedback
+   O PHP renderiza só um dos blocos (.sucesso ou .erro).
+   Na versão estática, feedback.html#erro mostra o erro.
+   ========================================================= */
+.feedback {
+  max-width: 620px; margin: 24px auto 8px; padding: 32px 22px 26px;
+  display: grid; justify-items: center; gap: 6px; text-align: center;
+  background: var(--card); border-radius: 24px; box-shadow: var(--sombra);
+  border-top: 6px solid var(--g1);
+}
+.feedback.erro { display: none; border-top-color: var(--g3); }
+.feedback.erro:target { display: grid; }
+.feedback.erro:target ~ .feedback.sucesso { display: none; }
+
+.feedback-icone {
+  width: 76px; height: 76px; border-radius: 50%; margin-bottom: 12px;
+  display: grid; place-items: center; font-size: 2rem; font-weight: 800;
+  background: var(--g1-claro); color: var(--g1-texto);
+  box-shadow: 0 0 0 10px color-mix(in srgb, var(--g1) 12%, transparent);
+}
+.erro .feedback-icone { background: var(--g3-claro); color: var(--g3-texto); box-shadow: 0 0 0 10px color-mix(in srgb, var(--g3) 12%, transparent); }
+.feedback h2 { font-size: 1.45rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.25; }
+.feedback > p { color: var(--suave); max-width: 440px; }
+
+.resumo {
+  width: 100%; margin: 18px 0 8px; padding: 16px; text-align: left;
+  display: grid; grid-template-columns: 1fr; gap: 12px;
+  background: var(--superficie); border-radius: 16px;
+}
+.resumo div { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.resumo dt { font-size: .8rem; color: var(--suave); font-weight: 600; }
+.resumo dd { font-weight: 700; font-size: .92rem; }
+
+.erros {
+  width: 100%; margin: 18px 0 8px; padding: 16px 16px 16px 36px; text-align: left;
+  background: var(--g3-claro); border: 1px solid var(--g3-borda); border-radius: 16px;
+  display: grid; gap: 6px; font-size: .9rem;
+}
+.erros li::marker { color: var(--g3-texto); }
+
+.feedback-botoes { display: flex; flex-direction: column; gap: 10px; width: 100%; margin-top: 10px; }
+
+
+/* =========================================================
+   23. Rodapé
+   ========================================================= */
+.rodape { display: flex; flex-direction: column; gap: 4px; padding: 22px 16px 30px; text-align: center; font-size: .78rem; color: var(--suave); }
+.rodape strong { color: var(--texto); }
+
+
+/* =========================================================
+   24. Responsivo
+   Celular primeiro: ~375px → 560px → tablet 760px →
+   desktop 1080px (menu fixo) → 1280px (grade de 6 colunas)
+   ========================================================= */
+@media (min-width: 560px) {
+  .hero h2 { font-size: 1.8rem; }
+  .alerta { grid-template-columns: auto 1fr auto; align-items: center; }
+  .alerta .btn { grid-column: auto; }
+  .feedback { padding: 40px 36px 32px; }
+  .feedback-botoes { flex-direction: row; justify-content: center; width: auto; }
+  .resumo { grid-template-columns: 1fr 1fr; }
+  .resumo div { flex-direction: column; align-items: flex-start; gap: 2px; }
+}
+
+@media (min-width: 760px) {
+  main { padding: 4px 24px 28px; }
+  .topbar { padding: 16px 24px; }
+  .usuario-info { display: block; }
+  .kpis { grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 22px 0; }
+  .hero { grid-template-columns: 1.4fr 1fr; padding: 34px; }
+  .hero h2 { font-size: 2rem; }
+  .grade { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .card { padding: 22px; }
+  .card-largo { grid-column: 1 / -1; }
+  /* No tablet a distribuição fica ao lado da equipe médica */
+  #distribuicao { grid-column: auto; }
+}
+
+/* Desktop: menu lateral sempre visível */
+@media (min-width: 1080px) {
+  .menu-toggle, .overlay, .hamburguer { display: none; }
+  .sidebar {
+    position: sticky; top: 0; height: 100vh; flex-shrink: 0; width: 270px;
+    transform: none; visibility: visible;
+  }
+  main { padding: 6px 32px 32px; }
+  .topbar { padding: 20px 32px; }
+}
+
+@media (min-width: 1280px) {
+  .grade { grid-template-columns: repeat(6, 1fr); gap: 20px; }
+  #cadastro, #fila { grid-column: span 3; }
+  #busca, #historico, #medicos { grid-column: span 2; }
+  .card-largo, #distribuicao { grid-column: 1 / -1; }
+}
+
+/* Telas muito largas: conteúdo centralizado em até ~1340px */
+@media (min-width: 1700px) {
+  main, .topbar { padding-left: calc(50% - 670px); padding-right: calc(50% - 670px); }
+}
+
+
+/* =========================================================
+   25. Preferências do usuário (movimento e impressão)
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+@media print {
+  .sidebar, .overlay, .hamburguer, .menu-toggle, .pular, .ferramentas, .rodape { display: none !important; }
+  .topbar { position: static; backdrop-filter: none; border: 0; }
+  body, .card { background: #fff; color: #000; box-shadow: none; }
+}
