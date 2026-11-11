@@ -14,8 +14,23 @@ $paciente = [
  * Essa funcao ira servir para cadastrar o paciente:
  * Essa funcao ira cadastrar os dados do paciente e salvar em um arquivo json
  */
-function cadastrarPaciente(){
+function cadastrarPaciente(array $paciente){
 
+    $nome = $paciente['nome'];
+    $cpf = $paciente['cpf'];
+    $telefone = $paciente['telefone'];
+    $gravidade = $paciente['gravidade'];
+
+    $resultado = file_put_contents('../dados/paciente.json', $paciente, FILE_APPEND);
+
+    //Pegar o conteudo $paciente e tentar salvar em um arquivo
+    if ($resultado === false) {
+        return false;
+    }
+
+    else {
+        return true;
+    }
 
 }
 
