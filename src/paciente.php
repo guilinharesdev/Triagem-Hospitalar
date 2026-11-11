@@ -1,18 +1,10 @@
 <?php
-$testePaciente = [
-    'nome'      => 'Gui',
-    'cpf'       => '123',
-    'telefone'  => '123',
-    'gravidade' => 1
-];
-//var_dump($testePaciente);
-$teste = cadastrarPaciente($testePaciente);
-//var_dump($teste);
+
 /**
  * Essa funcao ira servir para cadastrar o paciente:
  * Essa funcao ira cadastrar os dados do paciente e salvar em um arquivo json
  */
-function cadastrarPaciente(array $paciente){
+function cadastrarPaciente(array $paciente): bool{
 
     $caminho = '../dados/paciente.json';
 
@@ -28,10 +20,8 @@ function cadastrarPaciente(array $paciente){
     if ($resultado === false) {
         return false;
     }
-
-    else {
-        return true;
-    }
+    
+    return true;    
 
 }
 

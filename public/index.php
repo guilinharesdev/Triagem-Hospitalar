@@ -155,8 +155,14 @@
             <span class="card-icone azul" aria-hidden="true">📝</span>
           </div>
 
-          <form action="index.php" method="post" class="form">
-            <input type="hidden" name="acao" value="cadastrar">
+          <form action="cadastrarPaciente.php" method="post" class="form">
+            <?php
+              if (isset($_GET['nome'])) {
+            ?>    
+            <p class='link-mais'>Paciente: <?php echo($_GET['nome']); ?>, cadastrado!
+            <?php
+              }
+            ?>          
 
             <div class="campo">
               <label for="nome">Nome completo</label>

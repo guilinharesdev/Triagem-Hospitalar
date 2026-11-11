@@ -1,11 +1,56 @@
 [
     {
-    "nome": "Gui",
-    "cpf": "123",
-    "telefone": "123",
-    "gravidade": 1
-},
-{
-    
-}
+        "nome": "Gui",
+        "cpf": "123",
+        "telefone": "123",
+        "gravidade": 1
+    },
+    {
+        "acao": "cadastrar",
+        "nome": "dfsfdgggfg",
+        "cpf": "32424324434",
+        "telefone": "71832488244",
+        "gravidade": "2"
+    },
+    {
+        "acao": "cadastrar",
+        "nome": "dfsfdgggfg",
+        "cpf": "32424324434",
+        "telefone": "71832488244",
+        "gravidade": "2"
+    },
+    {
+        "acao": "cadastrar",
+        "nome": "dfsfdgggfg",
+        "cpf": "32424324434",
+        "telefone": "71832488244",
+        "gravidade": "2"
+    },
+    {
+        "acao": "cadastrar",
+        "nome": "TEste",
+        "cpf": "11111111111",
+        "telefone": "11111111111",
+        "gravidade": "3"
+    },
+    {
+        "acao": "cadastrar",
+        "nome": "Luis Felipe",
+        "cpf": "88888888888",
+        "telefone": "99999999999",
+        "gravidade": "1"
+    },
+    {
+        "acao": "cadastrar",
+        "nome": "Joao Pedro",
+        "cpf": "22222222222",
+        "telefone": "55555555555",
+        "gravidade": "2"
+    },
+    {
+        "nome": "Jo\u00e3o Pedreiro",
+        "cpf": "33333333333",
+        "telefone": "77777777777",
+        "gravidade": "3"
+    }
 ]
