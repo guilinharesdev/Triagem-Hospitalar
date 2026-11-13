@@ -439,7 +439,7 @@ $ordem = in_array(parametro($_GET, 'ordem', 'nome'), ['nome', 'gravidade'], true
 
                             <p>Informe os 11 números do CPF do paciente.</p>
 
-                            <form action="index.php" method="get" class="form" role="search">
+                            <form action="buscaPaciente.php" method="get" class="form" role="search">
 
                                 <input type="hidden" name="tela" value="busca"><input type="hidden" name="acao" value="buscar">
 
