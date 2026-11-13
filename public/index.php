@@ -2,96 +2,72 @@
 
 session_start();
 
-function escapar($valor)
+require_once __DIR__ . '/../src/pilha.php';
+require_once __DIR__ . '/../src/fila.php';
 
+function escapar($valor): string
 {
-
     return htmlspecialchars((string) $valor, ENT_QUOTES, 'UTF-8');
 }
 
-function parametro($fonte, $nome, $padrao = '')
-
+function parametro(array $fonte, string $nome, string $padrao = ''): string
 {
-
-    return isset($fonte[$nome]) && is_string($fonte[$nome]) ? $fonte[$nome] : $padrao;
+    return is_string($fonte[$nome] ?? null) ? $fonte[$nome] : $padrao;
 }
 
-// Lista fechada: nenhum parâmetro é usado para incluir arquivos.
+function processarAcao(string $acao, array $destinos, ?array &$avisos): void
+{
+    if ($acao === 'chamar') {
+        $atendido = chamarPaciente();
+        $avisos = $atendido
+            ? ['tipo' => 'sucesso', 'texto' => 'Paciente chamado: ' . ($atendido['nome'] ?? 'Paciente') . '.']
+            : ['tipo' => 'aviso', 'texto' => 'Nenhum paciente aguardando na fila.'];
+        return;
+    }
+
+    if ($acao === 'desfazer') {
+        $avisos = desfazerUltimoAtendimento()
+            ? ['tipo' => 'sucesso', 'texto' => 'Última ação desfeita e paciente devolvido à fila.']
+            : ['tipo' => 'aviso', 'texto' => 'Nenhuma ação no histórico para desfazer.'];
+        return;
+    }
+
+    if (isset($destinos[$acao])) {
+        $avisos = ['tipo' => 'aviso', 'texto' => 'Esta operação ainda não está disponível. Nenhum dado foi alterado.'];
+    }
+}
 
 $telas = [
-
-    'inicio' => 'Painel inicial',
-
-    'cadastro' => 'Cadastrar paciente',
-
-    'fila' => 'Fila de espera',
-
-    'leitos' => 'Mapa de leitos',
-
-    'busca' => 'Buscar paciente',
-
-    'historico' => 'Histórico de ações',
-
-    'medicos' => 'Médicos e especialidades',
-
+    'inicio'     => 'Painel inicial',
+    'cadastro'   => 'Cadastrar paciente',
+    'fila'       => 'Fila de espera',
+    'leitos'     => 'Mapa de leitos',
+    'busca'      => 'Buscar paciente',
+    'historico'  => 'Histórico de ações',
+    'medicos'    => 'Médicos e especialidades',
     'relatorios' => 'Relatórios e estatísticas'
-
 ];
 
-$destinos = [
-
-    'chamar' => 'fila',
-
-    'liberar' => 'leitos',
-
-    'buscar' => 'busca',
-
-    'desfazer' => 'historico',
-
-    'relatorio' => 'relatorios'
-
-];
+$destinos = ['chamar' => 'fila', 'liberar' => 'leitos', 'buscar' => 'busca', 'desfazer' => 'historico', 'relatorio' => 'relatorios'];
 
 $acao = parametro($_POST, 'acao', parametro($_GET, 'acao'));
-
-// Se o cadastro retornar com ?nome=..., permanecer na tela de cadastro.
 $nomeCadastrado = trim(parametro($_GET, 'nome'));
-$telaPadrao = $nomeCadastrado !== '' ? 'cadastro' : ($destinos[$acao] ?? 'inicio');
-$tela = parametro($_GET, 'tela', $telaPadrao);
 
-if (!isset($telas[$tela])) {
-
-    $tela = 'inicio';
-}
+$tela = parametro($_GET, 'tela', $nomeCadastrado !== '' ? 'cadastro' : ($destinos[$acao] ?? 'inicio'));
+$tela = isset($telas[$tela]) ? $tela : 'inicio';
 
 $avisos = $_SESSION['vitacare_feedback'] ?? null;
-
 unset($_SESSION['vitacare_feedback']);
-
-// Estas ações não tinham implementação no index.php recebido.
-
-if (isset($destinos[$acao])) {
-
-    $avisos = ['tipo' => 'aviso', 'texto' => 'Esta operação ainda não está disponível. Nenhum dado foi alterado.'];
-}
+processarAcao($acao, $destinos, $avisos);
 
 $abas = ['dia' => 'Estatísticas do dia', 'distribuicao' => 'Por gravidade', 'ordenado' => 'Relatório ordenado'];
-
 $aba = parametro($_GET, 'aba', $acao === 'relatorio' ? 'ordenado' : 'dia');
+$aba = isset($abas[$aba]) ? $aba : 'dia';
 
-if (!isset($abas[$aba])) {
-
-    $aba = 'dia';
-}
-
-$ordem = parametro($_GET, 'ordem', 'nome');
-
-if (!in_array($ordem, ['nome', 'gravidade'], true)) {
-
-    $ordem = 'nome';
-}
+$ordem = in_array(parametro($_GET, 'ordem', 'nome'), ['nome', 'gravidade'], true) ? parametro($_GET, 'ordem', 'nome') : 'nome';
 
 ?>
+
 
 <!doctype html>
 

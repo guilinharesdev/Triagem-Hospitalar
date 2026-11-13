@@ -1,57 +1,91 @@
 <?php
 
-//Ler pacientes na fila de espera
+require_once __DIR__ . '/pilha.php';
 
-$lerFila = file_get_contents(__DIR__ . '/../dados/fila.json');
-$fila = json_decode($lerFila, true);
+define('caminhoFila', __DIR__ . '/../dados/fila.json');
 
-foreach ($fila as $paciente) {
-    $nome = $paciente["nome"];
-    $gravidade = $paciente["gravidade"];
-
-    echo "Nome: $nome\n";
-    echo "Gravidade: $gravidade\n";
+function carregarFila(): array {
+    return file_exists(caminhoFila)
+        ? (json_decode(file_get_contents(caminhoFila), true) ?? [])
+        : [];
 }
 
-/**
- * Essa funcao ira servir para chamar o paciente para o leito
- */
-function chamarPaciente(array $fila): ?array
-{
+function salvarFila(array $fila): void {
+    file_put_contents(caminhoFila, json_encode($fila, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+}
+
+function enfileirarPaciente(array $dados): array {
+    $fila = carregarFila();
+
+    $paciente = [
+        'id'           => $dados['id'] ?? uniqid('pac_'),
+        'nome'         => $dados['nome'] ?? 'Sem nome',
+        'idade'        => $dados['idade'] ?? null,
+        'sintomas'     => $dados['sintomas'] ?? '',
+        'gravidade'    => (int) ($dados['gravidade'] ?? 1),
+        'hora_chegada' => date('d/m/Y H:i:s'),
+        'status'       => 'Aguardando'
+    ];
+
+    $fila[] = $paciente;
+    salvarFila($fila);
+    return $paciente;
+}
+
+// Função original do colega (mantida intacta)
+function buscarProximoPaciente(array $fila): ?array {
     $proximoPaciente = null;
     $indiceAtual = null;
 
     foreach ($fila as $indice => $paciente) {
-
-        if (!$proximoPaciente) {
+        if (!$proximoPaciente || $paciente['gravidade'] > $proximoPaciente['gravidade']) {
             $proximoPaciente = $paciente;
             $indiceAtual = $indice;
         }
-        if ($proximoPaciente) {
-            if ($paciente['gravidade'] > $proximoPaciente['gravidade']) {
-                $proximoPaciente = $paciente;
-                $indiceAtual = $indice;
-            }
-        }
     }
-    if ($proximoPaciente === null) {
-        return null;
-    }
-    return [$proximoPaciente, $indiceAtual];
+
+    return $proximoPaciente === null ? null : [$proximoPaciente, $indiceAtual];
 }
 
-$proximoPaciente = chamarPaciente($fila);
+// Chama o paciente escolhido pelo colega e envia para a sua pilha
+function chamarPaciente($medicoId = null, string $obs = 'Atendimento realizado'): ?array {
+    $fila = carregarFila();
+    $proximo = buscarProximoPaciente($fila);
 
-if ($proximoPaciente !== null) {
+    if ($proximo === null) {
+        return null;
+    }
 
-    var_dump($proximoPaciente[0]);
-    echo "Posicao: " . $proximoPaciente[1] . "\n";
+    $pacienteAntes = $proximo[0];
+    array_splice($fila, $proximo[1], 1);
+    salvarFila($fila);
 
-    $indicePaciente = $proximoPaciente[1];
+    $pacienteDepois = array_merge($pacienteAntes, ['status' => 'Realocado para Leito', 'observacao' => $obs]);
+    empilharAcao('ATENDIMENTO_REALIZADO', $pacienteAntes['id'] ?? $pacienteAntes['nome'], $pacienteAntes, $pacienteDepois, $medicoId);
 
-    $pacienteRemovido = array_splice($fila, offset: $indicePaciente, length: 1);
-    var_dump($fila);
+    return $pacienteDepois;
+}
 
-    $filaAtualizada = json_encode($fila, JSON_PRETTY_PRINT);
-    file_put_contents(__DIR__ . '/../dados/fila.json', $filaAtualizada);
+function desfazerUltimoAtendimento(): ?array {
+    $ultima = desempilharAcao();
+
+    if ($ultima && ($ultima['acao'] ?? '') === 'ATENDIMENTO_REALIZADO' && !empty($ultima['dados_anteriores'])) {
+        $fila = carregarFila();
+        $fila[] = $ultima['dados_anteriores'];
+        salvarFila($fila);
+    }
+
+    return $ultima;
+}
+
+function obterEstatisticasFila(): array {
+    $fila = carregarFila();
+    $niveis = array_count_values(array_column($fila, 'gravidade'));
+
+    return [
+        'total'      => count($fila),
+        'emergencia' => $niveis[3] ?? 0,
+        'urgencia'   => $niveis[2] ?? 0,
+        'simples'    => $niveis[1] ?? 0
+    ];
 }
