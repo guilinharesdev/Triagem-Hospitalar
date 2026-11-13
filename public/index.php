@@ -227,7 +227,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                             <p>Preencha todos os campos para solicitar o cadastro.</p>
 
-                            <form action="cadastrarPaciente.php" method="post" class="form">
+                            <form action="cadastrarPaciente.php" method="post" class="form">                        
 
                                 <?php if ($nomeCadastrado !== ''): ?>
                                     <p class="mensagem sucesso" role="status">

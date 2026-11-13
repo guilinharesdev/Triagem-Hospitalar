@@ -25,21 +25,25 @@ function cadastrarPaciente(array $paciente): bool{
 
 }
 
+function cadastrarFila(array $fila): bool{
 
-/**
- * Essa funcao ira servir para colocar o paciente na fila de espera
- */
-function enfileirarPaciente(){
+    $caminho = '../dados/fila.json';
 
+    $lista = file_exists($caminho) ? json_decode(file_get_contents($caminho), true) : [];
+
+    $lista[] = $fila;
+
+    $jsonFila = json_encode($lista, JSON_PRETTY_PRINT);
+
+    $resultado = file_put_contents($caminho, $jsonFila);
+
+    //Pegar o conteudo $paciente e tentar salvar em um arquivo
+    if ($resultado === false) {
+        return false;
+    }
+    
+    return true;    
 
 }
 
-
-/**
- * Essa funcao ira servir para chamar o paciente para o leito
- */
-function chamarPaciente(){
-
-
-}
 ?>
