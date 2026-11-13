@@ -1,22 +1,31 @@
 <?php
 
-include_once '../dados/fila.json';
 //Essa funcao ira servir para colocar o paciente na fila de espera
 
-$fila = ['fila.json'];
+$lerFila = file_get_contents('../dados/fila.json');
+$fila = json_decode($lerFila, true);
 
-var_dump($fila);
-function enfileirarPaciente(array $fila):void{
-    array_push ($fila);
+foreach ($fila as $paciente) {
+    $nome = $paciente["nome"];
+    $gravidade = $paciente["gravidade"];
+
+    echo "Nome: $nome\n";
+    echo "Gravidade: $gravidade\n";
 }
 
-enfileirarPaciente($fila);
+
+function enfileirarPaciente(array $fila, array $paciente): array
+{
+    array_push($fila, $paciente);
+    return $fila;
+}
+$fila = enfileirarPaciente($fila, $paciente);
+$filaJson = json_encode($fila);
+$resultado = file_put_contents('fila.json', $lerFila);
+
+var_dump($fila);
 
 /**
  * Essa funcao ira servir para chamar o paciente para o leito
  */
-function chamarPaciente(){
-
-
-}
-?>
+function chamarPaciente() {}
