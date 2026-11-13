@@ -4,7 +4,8 @@
  * Essa funcao ira servir para cadastrar o paciente:
  * Essa funcao ira cadastrar os dados do paciente e salvar em um arquivo json
  */
-function cadastrarPaciente(array $paciente): bool{
+function cadastrarPaciente(array $paciente): bool
+{
 
     $caminho = '../dados/paciente.json';
 
@@ -20,12 +21,12 @@ function cadastrarPaciente(array $paciente): bool{
     if ($resultado === false) {
         return false;
     }
-    
-    return true;    
 
+    return true;
 }
 
-function cadastrarFila(array $fila): bool{
+function cadastrarFila(array $fila): bool
+{
 
     $caminho = '../dados/fila.json';
 
@@ -41,9 +42,6 @@ function cadastrarFila(array $fila): bool{
     if ($resultado === false) {
         return false;
     }
-    
-    return true;    
 
+    return true;
 }
-
-?>

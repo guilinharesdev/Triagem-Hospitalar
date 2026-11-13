@@ -7,7 +7,6 @@ function escapar($valor)
 {
 
     return htmlspecialchars((string) $valor, ENT_QUOTES, 'UTF-8');
-
 }
 
 function parametro($fonte, $nome, $padrao = '')
@@ -15,7 +14,6 @@ function parametro($fonte, $nome, $padrao = '')
 {
 
     return isset($fonte[$nome]) && is_string($fonte[$nome]) ? $fonte[$nome] : $padrao;
-
 }
 
 // Lista fechada: nenhum parâmetro é usado para incluir arquivos.
@@ -64,7 +62,6 @@ $tela = parametro($_GET, 'tela', $telaPadrao);
 if (!isset($telas[$tela])) {
 
     $tela = 'inicio';
-
 }
 
 $avisos = $_SESSION['vitacare_feedback'] ?? null;
@@ -76,7 +73,6 @@ unset($_SESSION['vitacare_feedback']);
 if (isset($destinos[$acao])) {
 
     $avisos = ['tipo' => 'aviso', 'texto' => 'Esta operação ainda não está disponível. Nenhum dado foi alterado.'];
-
 }
 
 $abas = ['dia' => 'Estatísticas do dia', 'distribuicao' => 'Por gravidade', 'ordenado' => 'Relatório ordenado'];
@@ -86,7 +82,6 @@ $aba = parametro($_GET, 'aba', $acao === 'relatorio' ? 'ordenado' : 'dia');
 if (!isset($abas[$aba])) {
 
     $aba = 'dia';
-
 }
 
 $ordem = parametro($_GET, 'ordem', 'nome');
@@ -94,7 +89,6 @@ $ordem = parametro($_GET, 'ordem', 'nome');
 if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
     $ordem = 'nome';
-
 }
 
 ?>
@@ -215,7 +209,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                         <p class="nota">Os dados de atendimento não estão conectados nesta versão da interface.</p>
 
-                        <?php break;
+                    <?php break;
 
                     case 'cadastro': ?>
 
@@ -227,7 +221,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                             <p>Preencha todos os campos para solicitar o cadastro.</p>
 
-                            <form action="cadastrarPaciente.php" method="post" class="form">                        
+                            <form action="cadastrarPaciente.php" method="post" class="form">
 
                                 <?php if ($nomeCadastrado !== ''): ?>
                                     <p class="mensagem sucesso" role="status">
@@ -235,7 +229,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                     </p>
                                 <?php endif; ?>
 
-<div class="campo">
+                                <div class="campo">
 
                                     <label for="nome">Nome completo</label>
 
@@ -325,7 +319,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                         </div>
 
-                        <?php break;
+                    <?php break;
 
                     case 'fila': ?>
 
@@ -391,7 +385,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                         </div>
 
-                        <?php break;
+                    <?php break;
 
                     case 'leitos': ?>
 
@@ -459,7 +453,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                         </div>
 
-                        <?php break;
+                    <?php break;
 
                     case 'busca': ?>
 
@@ -487,7 +481,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                         </div>
 
-                        <?php break;
+                    <?php break;
 
                     case 'historico': ?>
 
@@ -515,7 +509,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                         </div>
 
-                        <?php break;
+                    <?php break;
 
                     case 'medicos': ?>
 
@@ -559,7 +553,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                         </div>
 
-                        <?php break;
+                    <?php break;
 
                     case 'relatorios': ?>
 
@@ -603,7 +597,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                         </div>
 
-                        <?php break;
+                <?php break;
 
                 endswitch; ?>
 
