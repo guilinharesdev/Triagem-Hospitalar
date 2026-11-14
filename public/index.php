@@ -473,10 +473,10 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                         <div class="card formulario">
 
                             <h2>Consulta por CPF</h2>
-
+                            
                             <p>Informe os 11 números do CPF do paciente.</p>
 
-                            <form action="index.php" method="get" class="form" role="search">
+                            <form action="buscaPaciente.php" method="get" class="form" role="search">
 
                                 <input type="hidden" name="tela" value="busca"><input type="hidden" name="acao" value="buscar">
 
@@ -490,7 +490,18 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                             </form>
 
-                            <p class="nota">A consulta de pacientes ainda não está disponível.</p>
+                            <p class="nota">
+                                <?php if(isset($_GET['nome'])): ?>
+                                    
+                                    Paciente: <?php echo($_GET['nome']); ?> <br>
+                                    cpf: <?php echo($_GET['cpf']); ?> <br>
+                                    Telefone: <?php echo($_GET['telefone']); ?> <br>
+                                    Gravidade: <?php echo($_GET['gravidade']); ?> <br>
+                                    Id: <?php echo($_GET['id']); ?>
+
+
+                                <?php endif ?>
+                            </p>
 
                         </div>
 
