@@ -52,20 +52,27 @@ function chamarPaciente(): ?array
     return [$proximoPaciente, $indiceAtual];
 }
 
-/*
-$proximoPaciente = chamarPaciente($fila);
+/**
+ * Essa função irá pegar o paciente que foi chamado, e excluir ele da fila de espera
+ * @return void
+ */
+function excluirPacienteFila():bool {
+    $fila = carregarFila();
 
-if ($proximoPaciente !== null) {
+    $proximoPaciente = chamarPaciente($fila);
 
-    var_dump($proximoPaciente[0]);
-    echo "Posicao: " . $proximoPaciente[1] . "\n";
+    if ($proximoPaciente !== null) {
 
-    $indicePaciente = $proximoPaciente[1];
+     var_dump($proximoPaciente[0]);
+     $indicePaciente = $proximoPaciente[1];
 
-    $pacienteRemovido = array_splice($fila, offset: $indicePaciente, length: 1);
-    var_dump($fila);
+     $pacienteRemovido = array_splice($fila, offset: $indicePaciente, length: 1);
 
-    $filaAtualizada = json_encode($fila, JSON_PRETTY_PRINT);
-    file_put_contents(__DIR__ . '/../dados/fila.json', $filaAtualizada);
+     $filaAtualizada = json_encode($fila, JSON_PRETTY_PRINT);
+     file_put_contents(__DIR__ . '/../dados/fila.json', $filaAtualizada);
+     var_dump($fila);
 }
-*/
+
+
+
+
