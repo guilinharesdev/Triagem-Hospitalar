@@ -1,0 +1,548 @@
+[
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "Joao Pedro",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "Joao Pedro",
+            "cpf": "12345678900",
+            "telefone": "7198289313",
+            "gravidade": "2"
+        },
+        "dados_novos": {
+            "nome": "Joao Pedro",
+            "cpf": "12345678900",
+            "telefone": "7198289313",
+            "gravidade": "2",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "2026-11-13 05:03:36"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "rafael",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "rafael",
+            "cpf": "11111111111",
+            "telefone": "11111111111",
+            "gravidade": "2"
+        },
+        "dados_novos": {
+            "nome": "rafael",
+            "cpf": "11111111111",
+            "telefone": "11111111111",
+            "gravidade": "2",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "2026-11-13 05:04:30"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "rafael",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "rafael",
+            "cpf": "22222222222",
+            "telefone": "22222222222",
+            "gravidade": "2"
+        },
+        "dados_novos": {
+            "nome": "rafael",
+            "cpf": "22222222222",
+            "telefone": "22222222222",
+            "gravidade": "2",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "2026-11-13 05:06:30"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "rafael",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "rafael",
+            "cpf": "33333333333",
+            "telefone": "33333333333",
+            "gravidade": "2"
+        },
+        "dados_novos": {
+            "nome": "rafael",
+            "cpf": "33333333333",
+            "telefone": "33333333333",
+            "gravidade": "2",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 13:52:04"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "paulo",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "paulo",
+            "cpf": "22222222222",
+            "telefone": "22222222222",
+            "gravidade": "3"
+        },
+        "dados_novos": {
+            "nome": "paulo",
+            "cpf": "22222222222",
+            "telefone": "22222222222",
+            "gravidade": "3",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 13:56:49"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "rafaellll",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "rafaellll",
+            "cpf": "11111111111",
+            "telefone": "22222222222",
+            "gravidade": "3"
+        },
+        "dados_novos": {
+            "nome": "rafaellll",
+            "cpf": "11111111111",
+            "telefone": "22222222222",
+            "gravidade": "3",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 14:04:49"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "maria",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "maria",
+            "cpf": "44444444444",
+            "telefone": "33333333333",
+            "gravidade": "3"
+        },
+        "dados_novos": {
+            "nome": "maria",
+            "cpf": "44444444444",
+            "telefone": "33333333333",
+            "gravidade": "3",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 14:21:53"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "mario",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "mario",
+            "cpf": "11111111111",
+            "telefone": "11111111111",
+            "gravidade": "3"
+        },
+        "dados_novos": {
+            "nome": "mario",
+            "cpf": "11111111111",
+            "telefone": "11111111111",
+            "gravidade": "3",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 14:22:44"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "pedro",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "pedro",
+            "cpf": "11111111111",
+            "telefone": "22222222222",
+            "gravidade": "2"
+        },
+        "dados_novos": {
+            "nome": "pedro",
+            "cpf": "11111111111",
+            "telefone": "22222222222",
+            "gravidade": "2",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 14:26:15"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "marcos",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "marcos",
+            "cpf": "22222222222",
+            "telefone": "33333333333",
+            "gravidade": "1"
+        },
+        "dados_novos": {
+            "nome": "marcos",
+            "cpf": "22222222222",
+            "telefone": "33333333333",
+            "gravidade": "1",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 14:26:38"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "arthur",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "arthur",
+            "cpf": "11111111111",
+            "telefone": "55555555555",
+            "gravidade": "3"
+        },
+        "dados_novos": {
+            "nome": "arthur",
+            "cpf": "11111111111",
+            "telefone": "55555555555",
+            "gravidade": "3",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 14:27:57"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "antonio",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "antonio",
+            "cpf": "33333333333",
+            "telefone": "33333333333",
+            "gravidade": "3"
+        },
+        "dados_novos": {
+            "nome": "antonio",
+            "cpf": "33333333333",
+            "telefone": "33333333333",
+            "gravidade": "3",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 14:39:44"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "sebastian",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "sebastian",
+            "cpf": "33333333333",
+            "telefone": "22222222222",
+            "gravidade": "3"
+        },
+        "dados_novos": {
+            "nome": "sebastian",
+            "cpf": "33333333333",
+            "telefone": "22222222222",
+            "gravidade": "3",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 14:54:32"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "pedro",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "pedro",
+            "cpf": "11111111111",
+            "telefone": "22222222222",
+            "gravidade": "2"
+        },
+        "dados_novos": {
+            "nome": "pedro",
+            "cpf": "11111111111",
+            "telefone": "22222222222",
+            "gravidade": "2",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 11:05:36"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "luan",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "luan",
+            "cpf": "11111111111",
+            "telefone": "11111111111",
+            "gravidade": "1"
+        },
+        "dados_novos": {
+            "nome": "luan",
+            "cpf": "11111111111",
+            "telefone": "11111111111",
+            "gravidade": "1",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 11:06:11"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "antonio",
+        "medico_id": "Plantão Médico",
+        "dados_anteriores": {
+            "nome": "antonio",
+            "cpf": "11111111111",
+            "telefone": "22222222222",
+            "gravidade": "3"
+        },
+        "dados_novos": {
+            "nome": "antonio",
+            "cpf": "11111111111",
+            "telefone": "22222222222",
+            "gravidade": "3",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 12:35:13"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "luana",
+        "medico_id": null,
+        "dados_anteriores": {
+            "nome": "luana",
+            "cpf": "11111111111",
+            "telefone": "11111111111",
+            "gravidade": "3"
+        },
+        "dados_novos": {
+            "nome": "luana",
+            "cpf": "11111111111",
+            "telefone": "11111111111",
+            "gravidade": "3",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 15:07:17"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "mario",
+        "medico_id": null,
+        "dados_anteriores": {
+            "nome": "mario",
+            "cpf": "11111111111",
+            "telefone": "33333333333",
+            "gravidade": "1"
+        },
+        "dados_novos": {
+            "nome": "mario",
+            "cpf": "11111111111",
+            "telefone": "33333333333",
+            "gravidade": "1",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 15:07:19"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "andre",
+        "medico_id": null,
+        "dados_anteriores": {
+            "nome": "andre",
+            "cpf": "13131313131",
+            "telefone": "31313131313",
+            "gravidade": "1"
+        },
+        "dados_novos": {
+            "nome": "andre",
+            "cpf": "13131313131",
+            "telefone": "31313131313",
+            "gravidade": "1",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 15:07:21"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": 10,
+        "medico_id": null,
+        "dados_anteriores": {
+            "nome": "teste pfv funciona nao aguento mais isso",
+            "gravidade": "3",
+            "id": 10
+        },
+        "dados_novos": {
+            "nome": "teste pfv funciona nao aguento mais isso",
+            "gravidade": "3",
+            "id": 10,
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 16:28:38"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": 11,
+        "medico_id": null,
+        "dados_anteriores": {
+            "nome": "teste numero 2 se nao funcionar eu vou trancar o curso",
+            "gravidade": "3",
+            "id": 11
+        },
+        "dados_novos": {
+            "nome": "teste numero 2 se nao funcionar eu vou trancar o curso",
+            "gravidade": "3",
+            "id": 11,
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 16:28:43"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": 15,
+        "medico_id": null,
+        "dados_anteriores": {
+            "nome": "lucas joao ",
+            "gravidade": "3",
+            "id": 15
+        },
+        "dados_novos": {
+            "nome": "lucas joao ",
+            "gravidade": "3",
+            "id": 15,
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 16:30:33"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": 17,
+        "medico_id": null,
+        "dados_anteriores": {
+            "nome": "mari ",
+            "gravidade": "3",
+            "id": 17
+        },
+        "dados_novos": {
+            "nome": "mari ",
+            "gravidade": "3",
+            "id": 17,
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 16:30:34"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": 18,
+        "medico_id": null,
+        "dados_anteriores": {
+            "nome": "funciona Deus",
+            "gravidade": "3",
+            "id": 18
+        },
+        "dados_novos": {
+            "nome": "funciona Deus",
+            "gravidade": "3",
+            "id": 18,
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 16:30:46"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "Joao Pedro",
+        "medico_id": null,
+        "dados_anteriores": {
+            "nome": "Joao Pedro",
+            "cpf": "12345678900",
+            "telefone": "7198289313",
+            "gravidade": "2"
+        },
+        "dados_novos": {
+            "nome": "Joao Pedro",
+            "cpf": "12345678900",
+            "telefone": "7198289313",
+            "gravidade": "2",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 16:30:52"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "Joao Pedro Barreto",
+        "medico_id": null,
+        "dados_anteriores": {
+            "nome": "Joao Pedro Barreto",
+            "cpf": "12212121212",
+            "telefone": "71984690328",
+            "gravidade": "2"
+        },
+        "dados_novos": {
+            "nome": "Joao Pedro Barreto",
+            "cpf": "12212121212",
+            "telefone": "71984690328",
+            "gravidade": "2",
+            "status": "Atendido",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 16:31:28"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "Joao Pedro Barreto",
+        "medico_id": null,
+        "dados_anteriores": {
+            "nome": "Joao Pedro Barreto",
+            "cpf": "12212121212",
+            "telefone": "71984690328",
+            "gravidade": "2"
+        },
+        "dados_novos": {
+            "nome": "Joao Pedro Barreto",
+            "cpf": "12212121212",
+            "telefone": "71984690328",
+            "gravidade": "2",
+            "status": "Realocado para Leito",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 16:38:02"
+    },
+    {
+        "acao": "ATENDIMENTO_REALIZADO",
+        "paciente_id": "lpado",
+        "medico_id": null,
+        "dados_anteriores": {
+            "nome": "lpado",
+            "gravidade": "2"
+        },
+        "dados_novos": {
+            "nome": "lpado",
+            "gravidade": "2",
+            "status": "Realocado para Leito",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "13/11/2026 16:38:05"
+    }
+]
