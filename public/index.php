@@ -335,9 +335,10 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                                 </div>
 
-                                <form action="index.php?tela=fila" method="post"><input type="hidden" name="acao"
-
-                                        value="chamar"><button class="btn btn-primario">Chamar próximo paciente</button></form>
+                                <form action="chamaPaciente.php" method="post">
+                                    <input type="hidden" name="acao" value="chamar">
+                                    <button class="btn btn-primario">Chamar próximo paciente</button>
+                                </form>
 
                             </div>
 
@@ -353,27 +354,39 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                                         <tr>
 
-                                            <th>Posição</th>
+                                            
 
                                             <th>Paciente</th>
 
                                             <th>Gravidade</th>
 
-                                            <th>Entrada</th>
-
-                                            <th>Situação</th>
+                                            <th>ID</th>
 
                                         </tr>
 
                                     </thead>
 
                                     <tbody>
+                                        <?php 
+                                            include('../src/fila.php');
+                                            $filaPacientes = carregarFila();
+                                            //var_dump($filaPacientes);
+                                            foreach($filaPacientes as $item):
 
+                                            
+                                        ?>
                                         <tr>
 
-                                            <td colspan="5" class="vazio">Fila indisponível para consulta.</td>
+                                            <td><?php echo $item['nome'] ?></td>
+                                            <td><?php echo $item['gravidade'] ?></td>
+                                            <td><?php if(isset($item['id'])){echo $item['id'];} ?></td>
+                                            
+                                            
 
-                                        </tr>
+                                        </tr> 
+                                        <?php 
+                                            endforeach
+                                        ?>
 
                                     </tbody>
 

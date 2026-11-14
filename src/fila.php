@@ -1,23 +1,35 @@
 <?php
 
 //Ler pacientes na fila de espera
+define('CAMINHO_DO_ARQUIVO_FILA_JSON', __DIR__ . '/../dados/fila.json');
 
-$lerFila = file_get_contents(__DIR__ . '/../dados/fila.json');
-$fila = json_decode($lerFila, true);
+/**
+ * Busca os dados da fila.json
+ * @return array|bool
+ */
+function carregarFila(): array|bool
+{
+    if (file_exists(CAMINHO_DO_ARQUIVO_FILA_JSON)) {
+        $lerFila = file_get_contents(CAMINHO_DO_ARQUIVO_FILA_JSON);
+        $fila = json_decode($lerFila, true);
 
-foreach ($fila as $paciente) {
-    $nome = $paciente["nome"];
-    $gravidade = $paciente["gravidade"];
-
-    echo "Nome: $nome\n";
-    echo "Gravidade: $gravidade\n";
+        return $fila;
+    }
+    return false;
 }
 
 /**
  * Essa funcao ira servir para chamar o paciente para o leito
  */
-function chamarPaciente(array $fila): ?array
+function chamarPaciente(): ?array
 {
+
+    $fila = carregarFila();
+
+    if(!$fila) {
+        return null;
+    }
+
     $proximoPaciente = null;
     $indiceAtual = null;
 
@@ -40,6 +52,7 @@ function chamarPaciente(array $fila): ?array
     return [$proximoPaciente, $indiceAtual];
 }
 
+/*
 $proximoPaciente = chamarPaciente($fila);
 
 if ($proximoPaciente !== null) {
@@ -55,3 +68,4 @@ if ($proximoPaciente !== null) {
     $filaAtualizada = json_encode($fila, JSON_PRETTY_PRINT);
     file_put_contents(__DIR__ . '/../dados/fila.json', $filaAtualizada);
 }
+*/
