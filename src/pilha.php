@@ -5,6 +5,25 @@ date_default_timezone_set('America/Bahia');
 
 define('caminhoPilha', __DIR__ . '/../dados/historico.json');
 
+require_once(__DIR__ . '/fila.php');
+
+function verPaciente(): void {
+    $resultado = chamarPaciente();
+
+    if ($resultado !== null) {
+        $paciente = $resultado[0];
+
+        empilharAcao(
+            'Chamado para atendimento',
+            $paciente['id'] ?? null,
+            [],
+            $paciente
+        );
+
+        excluirPacienteFila();
+    }
+}
+
 function carregarPilha(): array {
     if (!file_exists(caminhoPilha)) {
         return [];
