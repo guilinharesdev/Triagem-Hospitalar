@@ -591,6 +591,18 @@
     },
     {
         "acao": "Chamado para atendimento",
+        "paciente_id": 15,
+        "medico_id": null,
+        "dados_anteriores": [],
+        "dados_novos": {
+            "nome": "Billy",
+            "gravidade": "3",
+            "id": 15
+        },
+        "timestamp": "19/11/2026 19:07:36"
+    },
+    {
+        "acao": "Chamado para atendimento",
         "paciente_id": 18,
         "medico_id": null,
         "dados_anteriores": [],
@@ -599,6 +611,19 @@
             "gravidade": "3",
             "id": 18
         },
-        "timestamp": "19/11/2026 15:33:55"
+        "timestamp": "19/11/2026 19:07:42"
+    },
+    {
+        "acao": "Chamado para atendimento",
+        "paciente_id": null,
+        "medico_id": null,
+        "dados_anteriores": [],
+        "dados_novos": {
+            "nome": "lpado",
+            "gravidade": "2",
+            "status": "Realocado para Leito",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "19/11/2026 19:54:17"
     }
 ]

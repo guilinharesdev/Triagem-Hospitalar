@@ -5,17 +5,6 @@
         "id": 13
     },
     {
-        "nome": "Loja",
-        "gravidade": "2",
-        "id": 5
-    },
-    {
-        "nome": "lpado",
-        "gravidade": "2",
-        "status": "Realocado para Leito",
-        "observacao": "Atendimento realizado"
-    },
-    {
         "nome": "rafael",
         "gravidade": "2",
         "id": 19
@@ -31,8 +20,8 @@
         "id": 12
     },
     {
-        "nome": "Billy",
-        "gravidade": "3",
-        "id": 15
+        "nome": "Loja",
+        "gravidade": "2",
+        "id": 5
     }
 ]
