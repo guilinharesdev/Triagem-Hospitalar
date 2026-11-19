@@ -73,3 +73,24 @@ function desempilharAcao(): ?array {
 function listarHistoricoPlantao(): array {
     return array_reverse(carregarPilha());
 }
+
+function desfazerUltimaChamada(): void {
+    $ultimaAcao = desempilharAcao();
+
+    if ($ultimaAcao !== null) {
+        $pacienteParaDevolver = $ultimaAcao['dados_novos'];
+
+        $fila = carregarFila();
+
+        if ($fila === false) {
+            $fila = [];
+        }
+
+        $fila[] = $pacienteParaDevolver;
+
+        file_put_contents(
+            CAMINHO_DO_ARQUIVO_FILA_JSON,
+            json_encode($fila, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)
+        );
+    }
+}

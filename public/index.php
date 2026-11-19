@@ -72,7 +72,16 @@ unset($_SESSION['vitacare_feedback']);
 
 if (isset($destinos[$acao])) {
 
-    $avisos = ['tipo' => 'aviso', 'texto' => 'Esta operação ainda não está disponível. Nenhum dado foi alterado.'];
+// Verifica se o usuário clicou no botão de desfazer do histórico - Rafael 19/novembro as 15:38
+    
+    if ($acao === 'desfazer') {
+        include_once(__DIR__ . '/../src/pilha.php');
+        desfazerUltimaChamada();
+        $avisos = ['tipo' => 'sucesso', 'texto' => 'Última chamada desfeita! O paciente voltou para a fila.'];
+    } else {
+        $avisos = ['tipo' => 'aviso', 'texto' => 'Esta operação ainda não está disponível. Nenhum dado foi alterado.'];
+    }
+
 }
 
 $abas = ['dia' => 'Estatísticas do dia', 'distribuicao' => 'Por gravidade', 'ordenado' => 'Relatório ordenado'];
@@ -527,9 +536,9 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                             </div>
 
-                            <p class="vazio">Histórico indisponível para consulta.</p>
+                            <?php include(__DIR__ . '/testePilha.php'); ?>
 
-                            <p class="nota">O desfazer depende da pilha de ações do sistema.</p>
+                            
 
                         </div>
 
