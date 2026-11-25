@@ -78,4 +78,23 @@ function liberarLeito (array &$mapa, int $setor, int $leito): bool {
     return true;
 }
 
+function salvarLeitos(array $leitos): bool {
+
+    $caminho = '../dados/leitos.json';
+
+    $lista = file_exists($caminho) ? json_decode(file_get_contents($caminho), true) : [];
+
+    $lista[] = $leitos;
+
+    $jsonLeitos = json_encode($lista, JSON_PRETTY_PRINT);
+
+    $resultado = file_put_contents($caminho, $jsonLeitos);
+
+    //Pegar o conteudo $leitos e tentar salvar em um arquivo
+    if ($resultado === false) {
+        return false;
+    }
+}
+
+
 ?>

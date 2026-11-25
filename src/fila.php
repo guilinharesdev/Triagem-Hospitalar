@@ -68,9 +68,15 @@ function excluirPacienteFila():bool {
 
      $pacienteRemovido = array_splice($fila, offset: $indicePaciente, length: 1);
 
+     
+
      $filaAtualizada = json_encode($fila, JSON_PRETTY_PRINT);
      file_put_contents(__DIR__ . '/../dados/fila.json', $filaAtualizada);
      //var_dump($fila);
+
+     //Guilherme
+     var_dump($pacienteRemovido);
+     exit();
 
      //coloquei esses return por conta do bool da função $proximoPaciente - Rafael 16:06 16/novembro
      return true;

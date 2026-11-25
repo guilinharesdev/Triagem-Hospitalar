@@ -1,0 +1,29 @@
+[
+    [
+        {
+        "id": 1,
+        "paciente": ""        
+        },
+        {
+        "id": 2,        
+        "paciente": ""         
+        },
+        {
+        "id": 3,
+        "paciente": ""                 
+        }
+    ],
+    [
+        {
+        "id": 4,
+        "paciente": ""        
+        },
+        {
+        "id": 5,
+        "paciente": ""        
+        },{
+        "id": 6,
+        "paciente": ""        
+        }
+    ]
+]

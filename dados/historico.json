@@ -624,5 +624,78 @@
             "id": 6
         },
         "timestamp": "24/11/2026 20:44:58"
+    },
+    {
+        "acao": "Chamado para atendimento",
+        "paciente_id": 5,
+        "medico_id": null,
+        "dados_anteriores": [],
+        "dados_novos": {
+            "nome": "Loja",
+            "gravidade": "2",
+            "id": 5
+        },
+        "timestamp": "25/11/2026 20:17:35"
+    },
+    {
+        "acao": "Chamado para atendimento",
+        "paciente_id": 5,
+        "medico_id": null,
+        "dados_anteriores": [],
+        "dados_novos": {
+            "nome": "Loja",
+            "gravidade": "2",
+            "id": 5
+        },
+        "timestamp": "25/11/2026 20:17:50"
+    },
+    {
+        "acao": "Chamado para atendimento",
+        "paciente_id": 5,
+        "medico_id": null,
+        "dados_anteriores": [],
+        "dados_novos": {
+            "nome": "Loja",
+            "gravidade": "2",
+            "id": 5
+        },
+        "timestamp": "25/11/2026 20:18:09"
+    },
+    {
+        "acao": "Chamado para atendimento",
+        "paciente_id": 5,
+        "medico_id": null,
+        "dados_anteriores": [],
+        "dados_novos": {
+            "nome": "Loja",
+            "gravidade": "2",
+            "id": 5
+        },
+        "timestamp": "25/11/2026 20:18:22"
+    },
+    {
+        "acao": "Chamado para atendimento",
+        "paciente_id": 5,
+        "medico_id": null,
+        "dados_anteriores": [],
+        "dados_novos": {
+            "nome": "Loja",
+            "gravidade": "2",
+            "id": 5
+        },
+        "timestamp": "25/11/2026 20:18:36"
+    },
+    {
+        "acao": "Chamado para atendimento",
+        "paciente_id": null,
+        "medico_id": null,
+        "dados_anteriores": [],
+        "dados_novos": {
+            "nome": "lpado",
+            "gravidade": "2",
+            "status": "Realocado para Leito",
+            "observacao": "Atendimento realizado"
+        },
+        "timestamp": "25/11/2026 20:18:44"
     }
 ]
