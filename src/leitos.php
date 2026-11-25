@@ -63,8 +63,19 @@ function ocuparLeito (array &$mapa, int $setor): ?int {
 
 }
 
-function liberarLeito () {
+function liberarLeito (array &$mapa, int $setor, int $leito): bool {
 
+    if (!isset($mapa[$setor][$leito])) {
+        return false;
+    }
+
+    if ($mapa[$setor][$leito]!==1) {
+        return false;
+    }
+
+    $mapa[$setor][$leito] = 0;
+
+    return true;
 }
 
 ?>
