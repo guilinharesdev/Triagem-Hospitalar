@@ -220,7 +220,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                     <?php break;
 
-                    case 'cadastro': ?>
+                     case 'cadastro': ?>
 
                         <!-- Cadastro: nomes de campos e destino originais. -->
 
@@ -235,6 +235,11 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                 <?php if ($nomeCadastrado !== ''): ?>
                                     <p class="mensagem sucesso" role="status">
                                         Paciente: <?= escapar($nomeCadastrado) ?>, cadastrado!
+                                    </p>
+                                <?php endif; ?>
+                                <?php if ($nomeCadastrado !== ''): ?>
+                                    <p class="mensagem erro role="status">
+                                        Aviso: <?= $_GET['aviso'];  ?>
                                     </p>
                                 <?php endif; ?>
 
