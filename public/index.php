@@ -500,19 +500,60 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                             </form>
 
                             <p class="nota">
-                                <?php if(isset($_GET['nome'])): ?>
-                                    
-                                    Paciente: <?php echo($_GET['nome']); ?> <br>
-                                    cpf: <?php echo($_GET['cpf']); ?> <br>
-                                    Telefone: <?php echo($_GET['telefone']); ?> <br>
-                                    Gravidade: <?php echo($_GET['gravidade']); ?> <br>
-                                    Id: <?php echo($_GET['id']); ?>
-
-
-                                <?php endif ?>
+                                
                             </p>
+                                    
+                            <?php if (isset($_GET['nome'])): ?>
+                            <div class="campo">
+
+                                    <label for="nome">Nome completo</label>
+
+                                    <input id="nome" type="text" value="<?php echo ($_GET['nome']); ?>"
+
+                                        placeholder="Ex.: Maria Souza">
+
+                                </div>
+
+                                <div class="campos-2">
+
+                                    <div class="campo">
+
+                                        <label for="cpf">CPF</label>
+
+                                        <input id="cpf" type="text" value="<?php echo ($_GET['cpf']); ?>"
+
+                                            maxlength="11" placeholder="00000000000" aria-describedby="cpf-ajuda">
+
+                                        <small id="cpf-ajuda">Somente os 11 números</small>
+
+                                    </div>
+
+                                    <div class="campo">
+
+                                        <label for="tel">Telefone</label>
+
+                                        <input id="tel" type="tel" value="<?php echo ($_GET['telefone']); ?>"
+
+                                            pattern="[0-9]{10,11}" maxlength="11" autocomplete="tel" placeholder="71999990000"
+
+                                            aria-describedby="tel-ajuda">
+
+                                        <small id="tel-ajuda">DDD + número</small>
+
+                                    </div>
+
+                                </div>
+
+                                <fieldset class="campo">
+
+                                    <legend>Nível de gravidade</legend>
+
+                                    <input id="nome" type="text" value="<?php echo ($_GET['gravidade']); ?>"
+
+                                        placeholder="Ex.: 1">
 
                         </div>
+                        <?php endif ?>
 
                     <?php break;
 
