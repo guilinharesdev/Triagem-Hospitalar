@@ -535,8 +535,11 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                         value="desfazer"><button class="btn">Desfazer última ação</button></form>
 
                             </div>
-
-                            <?php include(__DIR__ . '/testePilha.php'); ?>
+                            
+                            <!-- 
+                            Caminho do montagemPilha.php para a exibição da pilha | Rafael - 24/novembro - 20:52
+                            -->
+                            <?php include(__DIR__ . '/montagemPilha.php'); ?>
 
                             
 
@@ -622,11 +625,19 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                             <?php elseif ($aba === 'distribuicao'): ?>
 
-                                <p class="vazio">Distribuição por gravidade indisponível.</p>
+                               <!--
+                                Caminho do contagemRelatorio para o "Estatísticas do Dia" | Rafael - 24/novembro - 20:52
+                            -->
+                                <?php include(__DIR__ . '/contagemRelatorio.php'); ?>
 
+                                 <!--
+                                Caminho do contagemRelatorio para o "Por Gravidade" | Rafael - 24/novembro - 20:52
+                            -->
                             <?php else: ?>
 
-                                <p class="vazio">Estatísticas do dia indisponíveis.</p><?php endif; ?>
+                                <?php include(__DIR__ . '/contagemRelatorio.php'); ?>
+
+                                <?php endif; ?>
 
                         </div>
 

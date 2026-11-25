@@ -7,6 +7,9 @@ define('caminhoPilha', __DIR__ . '/../dados/historico.json');
 
 require_once(__DIR__ . '/fila.php');
 
+/**
+ * 
+ */
 function verPaciente(): void {
     $resultado = chamarPaciente();
 

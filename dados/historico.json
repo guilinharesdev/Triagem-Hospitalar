@@ -600,5 +600,29 @@
             "id": 18
         },
         "timestamp": "19/11/2026 15:33:55"
+    },
+    {
+        "acao": "Chamado para atendimento",
+        "paciente_id": 15,
+        "medico_id": null,
+        "dados_anteriores": [],
+        "dados_novos": {
+            "nome": "Billy",
+            "gravidade": "3",
+            "id": 15
+        },
+        "timestamp": "24/11/2026 20:44:58"
+    },
+    {
+        "acao": "Chamado para atendimento",
+        "paciente_id": 6,
+        "medico_id": null,
+        "dados_anteriores": [],
+        "dados_novos": {
+            "nome": "fernando silva",
+            "gravidade": "2",
+            "id": 6
+        },
+        "timestamp": "24/11/2026 20:44:58"
     }
 ]
