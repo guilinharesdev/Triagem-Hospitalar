@@ -1,20 +1,12 @@
 <?php
 
-function mapaLeitos () {
-return [
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0]
-];
-}
-
 function contarOcupados(array $mapa, int $setor): int {
 
     $leitos = $mapa[$setor] ?? [];
     $total = 0;
 
     foreach ($leitos as $leito) {
-        if ($leito === 1) {
+        if ($leito === true) {
             $total++;
         }
     }
@@ -36,7 +28,7 @@ function primeiroLeitoLivre(array $mapa, int $setor): ?int {
     $leitos = $mapa[$setor] ?? [];
 
     foreach ($leitos as $indice => $leito) {
-        if ($leito === 0) {
+        if ($leito === false) {
             return $indice;
         }
     }
@@ -57,7 +49,7 @@ function ocuparLeito (array &$mapa, int $setor): ?int {
         return null;
     }
 
-    $mapa[$setor][$leito] = 1;
+    $mapa[$setor][$leito] = true;
 
     return $leito;
 
@@ -69,11 +61,11 @@ function liberarLeito (array &$mapa, int $setor, int $leito): bool {
         return false;
     }
 
-    if ($mapa[$setor][$leito]!==1) {
+    if ($mapa[$setor][$leito]!==true) {
         return false;
     }
 
-    $mapa[$setor][$leito] = 0;
+    $mapa[$setor][$leito] = false;
 
     return true;
 }
