@@ -338,14 +338,22 @@ footer small {
 .campo legend {
     margin-bottom:10px
 }
-input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]),select {
-    width:100%;
-    min-height:44px;
-    padding:10px 12px;
-    border:1px solid #889f99;
-    border-radius:6px;
-    background:white;
-    color:var(--texto)
+input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]),
+select {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #889f99;
+    border-radius: 6px;
+    background: white;
+    color: var(--texto);
+}
+
+input:not([type="radio"]):not([type="checkbox"]):not([type="hidden"]):disabled,
+select:disabled {
+    background: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
 }
 input::placeholder {
     color:#61716d

@@ -237,9 +237,12 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                         Paciente: <?= escapar($nomeCadastrado) ?>, cadastrado!
                                     </p>
                                 <?php endif; ?>
-                                <?php if ($nomeCadastrado !== ''): ?>
+                               <?php if(isset($_GET['aviso'])): ?>
                                     <p class="mensagem erro role="status">
-                                        Aviso: <?= $_GET['aviso'];  ?>
+                                        Aviso: <?php 
+                                        
+                                            echo($_GET['aviso']);  
+                                        ?>
                                     </p>
                                 <?php endif; ?>
 
@@ -515,7 +518,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                                     <input id="nome" type="text" value="<?php echo ($_GET['nome']); ?>"
 
-                                        placeholder="Ex.: Maria Souza">
+                                        placeholder="Ex.: Maria Souza" disabled>
 
                                 </div>
 
@@ -527,7 +530,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                                         <input id="cpf" type="text" value="<?php echo ($_GET['cpf']); ?>"
 
-                                            maxlength="11" placeholder="00000000000" aria-describedby="cpf-ajuda">
+                                            maxlength="11" placeholder="00000000000" aria-describedby="cpf-ajuda" disabled>
 
                                         <small id="cpf-ajuda">Somente os 11 números</small>
 
@@ -541,7 +544,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                                             pattern="[0-9]{10,11}" maxlength="11" autocomplete="tel" placeholder="71999990000"
 
-                                            aria-describedby="tel-ajuda">
+                                            aria-describedby="tel-ajuda" disabled>
 
                                         <small id="tel-ajuda">DDD + número</small>
 
@@ -555,7 +558,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                                     <input id="nome" type="text" value="<?php echo ($_GET['gravidade']); ?>"
 
-                                        placeholder="Ex.: 1">
+                                        placeholder="Ex.: 1" disabled>
 
                         </div>
                         <?php endif ?>
