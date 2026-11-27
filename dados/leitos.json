@@ -1,23 +1,83 @@
 [
     [
-        {"id": 0, "ocupado": false, "paciente_id": null},
-        {"id": 1, "ocupado": false, "paciente_id": null},
-        {"id": 2, "ocupado": false, "paciente_id": null},
-        {"id": 3, "ocupado": false, "paciente_id": null},
-        {"id": 4, "ocupado": false, "paciente_id": null}
+        {
+            "id": 0,
+            "ocupado": false,
+            "paciente_id": null
+        },
+        {
+            "id": 1,
+            "ocupado": false,
+            "paciente_id": null
+        },
+        {
+            "id": 2,
+            "ocupado": false,
+            "paciente_id": null
+        },
+        {
+            "id": 3,
+            "ocupado": false,
+            "paciente_id": null
+        },
+        {
+            "id": 4,
+            "ocupado": false,
+            "paciente_id": null
+        }
     ],
     [
-        {"id": 5, "ocupado": false, "paciente_id": null},
-        {"id": 6, "ocupado": false, "paciente_id": null},
-        {"id": 7, "ocupado": false, "paciente_id": null},
-        {"id": 8, "ocupado": false, "paciente_id": null},
-        {"id": 9, "ocupado": false, "paciente_id": null}
+        {
+            "id": 5,
+            "ocupado": false,
+            "paciente_id": null
+        },
+        {
+            "id": 6,
+            "ocupado": true,
+            "paciente_id": 12
+        },
+        {
+            "id": 7,
+            "ocupado": false,
+            "paciente_id": null
+        },
+        {
+            "id": 8,
+            "ocupado": false,
+            "paciente_id": null
+        },
+        {
+            "id": 9,
+            "ocupado": false,
+            "paciente_id": null
+        }
     ],
     [
-        {"id": 10, "ocupado": false, "paciente_id": null},
-        {"id": 11, "ocupado": false, "paciente_id": null},
-        {"id": 12, "ocupado": false, "paciente_id": null},
-        {"id": 13, "ocupado": false, "paciente_id": null},
-        {"id": 14, "ocupado": false, "paciente_id": null}
+        {
+            "id": 10,
+            "ocupado": true,
+            "paciente_id": 15
+        },
+        {
+            "id": 11,
+            "ocupado": false,
+            "paciente_id": null
+        },
+        {
+            "id": 12,
+            "ocupado": false,
+            "paciente_id": null
+        },
+        {
+            "id": 13,
+            "ocupado": false,
+            "paciente_id": null
+        },
+        {
+            "id": 14,
+            "ocupado": false,
+            "paciente_id": null
+        }
     ]
 ]

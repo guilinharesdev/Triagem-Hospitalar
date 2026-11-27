@@ -2,15 +2,15 @@
 
 session_start();
 
-function escapar($valor)
+require_once __DIR__ . '/../src/leitos.php';
 
+function escapar($valor)
 {
 
     return htmlspecialchars((string) $valor, ENT_QUOTES, 'UTF-8');
 }
 
 function parametro($fonte, $nome, $padrao = '')
-
 {
 
     return isset($fonte[$nome]) && is_string($fonte[$nome]) ? $fonte[$nome] : $padrao;
@@ -72,8 +72,8 @@ unset($_SESSION['vitacare_feedback']);
 
 if (isset($destinos[$acao])) {
 
-// Verifica se o usuário clicou no botão de desfazer do histórico - Rafael 19/novembro as 15:38
-    
+    // Verifica se o usuário clicou no botão de desfazer do histórico - Rafael 19/novembro as 15:38
+
     if ($acao === 'desfazer') {
         include_once(__DIR__ . '/../src/pilha.php');
         desfazerUltimaChamada();
@@ -125,7 +125,6 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
     <a class="pular" href="#conteudo">Pular para o conteúdo</a>
 
     <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Abrir ou fechar menu"
-
         aria-controls="navegacao">
 
     <label for="menu-toggle" class="menu-botao">☰ Menu</label>
@@ -133,7 +132,6 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
     <aside class="sidebar" id="navegacao">
 
         <a class="logo" href="index.php"><span class="logo-icone"
-
                 aria-hidden="true">+</span><span><strong>VitaCare</strong><small>Triagem Hospitalar</small></span></a>
 
         <nav aria-label="Menu principal">
@@ -205,7 +203,6 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                         </div>
 
                         <div class="acoes"><a class="btn btn-primario" href="index.php?tela=cadastro">+ Cadastrar paciente</a><a
-
                                 class="btn" href="index.php?tela=fila">Ver fila de espera →</a></div>
 
                         <article class="card proximo">
@@ -218,9 +215,9 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                         <p class="nota">Os dados de atendimento não estão conectados nesta versão da interface.</p>
 
-                    <?php break;
+                        <?php break;
 
-                     case 'cadastro': ?>
+                    case 'cadastro': ?>
 
                         <!-- Cadastro: nomes de campos e destino originais. -->
 
@@ -237,11 +234,11 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                         Paciente: <?= escapar($nomeCadastrado) ?>, cadastrado!
                                     </p>
                                 <?php endif; ?>
-                               <?php if(isset($_GET['aviso'])): ?>
-                                    <p class="mensagem erro role="status">
-                                        Aviso: <?php 
-                                        
-                                            echo($_GET['aviso']);  
+                                <?php if (isset($_GET['aviso'])): ?>
+                                    <p class="mensagem erro role=" status">
+                                        Aviso: <?php
+
+                                        echo ($_GET['aviso']);
                                         ?>
                                     </p>
                                 <?php endif; ?>
@@ -251,7 +248,6 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                     <label for="nome">Nome completo</label>
 
                                     <input id="nome" type="text" name="nome" required autocomplete="name"
-
                                         placeholder="Ex.: Maria Souza">
 
                                 </div>
@@ -263,7 +259,6 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                         <label for="cpf">CPF</label>
 
                                         <input id="cpf" type="text" name="cpf" required inputmode="numeric" pattern="[0-9]{11}"
-
                                             maxlength="11" placeholder="00000000000" aria-describedby="cpf-ajuda">
 
                                         <small id="cpf-ajuda">Somente os 11 números</small>
@@ -275,9 +270,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                         <label for="tel">Telefone</label>
 
                                         <input id="tel" type="tel" name="telefone" required inputmode="numeric"
-
                                             pattern="[0-9]{10,11}" maxlength="11" autocomplete="tel" placeholder="71999990000"
-
                                             aria-describedby="tel-ajuda">
 
                                         <small id="tel-ajuda">DDD + número</small>
@@ -307,7 +300,6 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                             <input type="radio" name="gravidade" value="2">
 
                                             <span class="grav-box"><b
-
                                                     aria-hidden="true">2</b><strong>Urgente</strong><small>Setor 1 ·
 
                                                     Clínica</small></span>
@@ -319,7 +311,6 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                             <input type="radio" name="gravidade" value="3">
 
                                             <span class="grav-box"><b
-
                                                     aria-hidden="true">3</b><strong>Emergência</strong><small>Setor 2 ·
 
                                                     UTI</small></span>
@@ -336,7 +327,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                         </div>
 
-                    <?php break;
+                        <?php break;
 
                     case 'fila': ?>
 
@@ -371,7 +362,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                                         <tr>
 
-                                            
+
 
                                             <th>Paciente</th>
 
@@ -384,25 +375,27 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                     </thead>
 
                                     <tbody>
-                                        <?php 
-                                            include('../src/fila.php');
-                                            $filaPacientes = carregarFila();
-                                            //var_dump($filaPacientes);
-                                            foreach($filaPacientes as $item):
+                                        <?php
+                                        include('../src/fila.php');
+                                        $filaPacientes = carregarFila();
+                                        //var_dump($filaPacientes);
+                                        foreach ($filaPacientes as $item):
 
-                                            
-                                        ?>
-                                        <tr>
 
-                                            <td><?php echo $item['nome'] ?></td>
-                                            <td><?php echo $item['gravidade'] ?></td>
-                                            <td><?php if(isset($item['id'])){echo $item['id'];} ?></td>
-                                            
-                                            
+                                            ?>
+                                            <tr>
 
-                                        </tr> 
-                                        <?php 
-                                            endforeach
+                                                <td><?php echo $item['nome'] ?></td>
+                                                <td><?php echo $item['gravidade'] ?></td>
+                                                <td><?php if (isset($item['id'])) {
+                                                    echo $item['id'];
+                                                } ?></td>
+
+
+
+                                            </tr>
+                                        <?php
+                                        endforeach
                                         ?>
 
                                     </tbody>
@@ -415,82 +408,65 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                         </div>
 
-                    <?php break;
+                        <?php break;
 
                     case 'leitos': ?>
-
-                        <p class="nota">Ocupação indisponível. Não há confirmação de leitos livres ou setores lotados.</p>
-
+                        <?php
+                        require_once __DIR__ . '/../src/leitos.php';
+                        $mapa = carregarLeitos();
+                        $nomesSetores = ['Atendimento comum', 'Observação / Clínica', 'Emergência / UTI'];
+                        ?>
                         <div class="setores">
-
-                            <?php foreach (['Atendimento comum', 'Observação / Clínica', 'Emergência / UTI'] as $numero => $setor): ?>
-
+                            <?php foreach ($nomesSetores as $numero => $nomeSetor): ?>
+                                <?php
+                                $ocupados = contarOcupados($mapa, $numero);
+                                $livres = 5 - $ocupados;
+                                ?>
                                 <article class="card">
-
                                     <p class="sobretitulo">Setor <?= $numero ?></p>
-
-                                    <h2><?= $setor ?></h2>
-
-                                    <p>Disponíveis: — · Ocupados: —</p>
-
-                                    <!-- Posições do layout original; não representam ocupação confirmada. -->
-
-                                    <ul class="leitos" aria-label="Posições de leitos sem dados de ocupação">
-
-                                        <?php for ($leito = 0; $leito < 5; $leito++): ?>
-
-                                            <li><strong>L<?= $leito ?></strong><small>Sem dados</small></li>
-
-                                        <?php endfor; ?>
-
+                                    <h2><?= escapar($nomeSetor) ?></h2>
+                                    <p>Disponíveis: <?= $livres ?> · Ocupados: <?= $ocupados ?></p>
+                                    <?php if (setorLotado($mapa, $numero)): ?>
+                                        <p class="mensagem aviso" role="status">Setor <?= $numero ?> lotado — nenhum leito livre</p>
+                                    <?php endif; ?>
+                                    <ul class="leitos" aria-label="Leitos do setor <?= $numero ?>">
+                                        <?php foreach ($mapa[$numero] as $indice => $leito): ?>
+                                            <li>
+                                                <strong>L<?= $indice ?></strong>
+                                                <small><?= leitoOcupado($leito) ? 'Ocupado' : 'Livre' ?></small>
+                                                <?php if (leitoOcupado($leito)): ?>
+                                                    <small>pac. #<?= (int) $leito['paciente_id'] ?></small>
+                                                <?php endif; ?>
+                                            </li>
+                                        <?php endforeach; ?>
                                     </ul>
-
                                 </article>
-
                             <?php endforeach; ?>
-
                         </div>
-
                         <div class="card">
-
                             <h2>Liberar leito</h2>
-
                             <p>Selecione o setor e o leito.</p>
-
-                            <form action="index.php?tela=leitos" method="post" class="liberar">
-
+                            <form action="liberarLeito.php" method="post" class="liberar">
                                 <div class="campo"><label for="lib-setor">Setor</label><select id="lib-setor" name="setor">
-
                                         <option value="0">Setor 0 · Comum</option>
-
                                         <option value="1">Setor 1 · Clínica</option>
-
                                         <option value="2">Setor 2 · UTI</option>
-
                                     </select></div>
-
                                 <div class="campo"><label for="lib-leito">Leito</label><select id="lib-leito"
-
                                         name="leito"><?php for ($i = 0; $i < 5; $i++): ?>
-
                                             <option value="<?= $i ?>">Leito <?= $i ?></option><?php endfor; ?>
-
                                     </select></div>
-
-                                <input type="hidden" name="acao" value="liberar"><button class="btn">Liberar</button>
-
+                                <button class="btn">Liberar</button>
                             </form>
-
                         </div>
-
-                    <?php break;
+                        <?php break;
 
                     case 'busca': ?>
 
                         <div class="card formulario">
 
                             <h2>Consulta por CPF</h2>
-                            
+
                             <p>Informe os 11 números do CPF do paciente.</p>
 
                             <form action="buscaPaciente.php" method="get" class="form" role="search">
@@ -498,9 +474,7 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                 <input type="hidden" name="tela" value="busca"><input type="hidden" name="acao" value="buscar">
 
                                 <div class="campo"><label for="busca-cpf">CPF</label><input id="busca-cpf" name="cpf"
-
                                         inputmode="numeric" pattern="[0-9]{11}" maxlength="11" required
-
                                         placeholder="00000000000" value="<?= escapar(parametro($_GET, 'cpf')) ?>"></div>
 
                                 <button class="btn btn-primario">Buscar</button>
@@ -508,16 +482,15 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                             </form>
 
                             <p class="nota">
-                                
+
                             </p>
-                                    
+
                             <?php if (isset($_GET['nome'])): ?>
-                            <div class="campo">
+                                <div class="campo">
 
                                     <label for="nome">Nome completo</label>
 
                                     <input id="nome" type="text" value="<?php echo ($_GET['nome']); ?>"
-
                                         placeholder="Ex.: Maria Souza" disabled>
 
                                 </div>
@@ -528,9 +501,8 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                                         <label for="cpf">CPF</label>
 
-                                        <input id="cpf" type="text" value="<?php echo ($_GET['cpf']); ?>"
-
-                                            maxlength="11" placeholder="00000000000" aria-describedby="cpf-ajuda" disabled>
+                                        <input id="cpf" type="text" value="<?php echo ($_GET['cpf']); ?>" maxlength="11"
+                                            placeholder="00000000000" aria-describedby="cpf-ajuda" disabled>
 
                                         <small id="cpf-ajuda">Somente os 11 números</small>
 
@@ -540,11 +512,9 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                                         <label for="tel">Telefone</label>
 
-                                        <input id="tel" type="tel" value="<?php echo ($_GET['telefone']); ?>"
-
-                                            pattern="[0-9]{10,11}" maxlength="11" autocomplete="tel" placeholder="71999990000"
-
-                                            aria-describedby="tel-ajuda" disabled>
+                                        <input id="tel" type="tel" value="<?php echo ($_GET['telefone']); ?>" pattern="[0-9]{10,11}"
+                                            maxlength="11" autocomplete="tel" placeholder="71999990000" aria-describedby="tel-ajuda"
+                                            disabled>
 
                                         <small id="tel-ajuda">DDD + número</small>
 
@@ -556,14 +526,13 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                                     <legend>Nível de gravidade</legend>
 
-                                    <input id="nome" type="text" value="<?php echo ($_GET['gravidade']); ?>"
+                                    <input id="nome" type="text" value="<?php echo ($_GET['gravidade']); ?>" placeholder="Ex.: 1"
+                                        disabled>
 
-                                        placeholder="Ex.: 1" disabled>
-
-                        </div>
+                            </div>
                         <?php endif ?>
 
-                    <?php break;
+                        <?php break;
 
                     case 'historico': ?>
 
@@ -580,21 +549,20 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                                 </div>
 
                                 <form action="index.php?tela=historico" method="post"><input type="hidden" name="acao"
-
                                         value="desfazer"><button class="btn">Desfazer última ação</button></form>
 
                             </div>
-                            
+
                             <!-- 
                             Caminho do montagemPilha.php para a exibição da pilha | Rafael - 24/novembro - 20:52
                             -->
                             <?php include(__DIR__ . '/montagemPilha.php'); ?>
 
-                            
+
 
                         </div>
 
-                    <?php break;
+                        <?php break;
 
                     case 'medicos': ?>
 
@@ -638,12 +606,11 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
 
                         </div>
 
-                    <?php break;
+                        <?php break;
 
                     case 'relatorios': ?>
 
                         <nav class="abas" aria-label="Tipos de relatório"><?php foreach ($abas as $chave => $rotulo): ?><a
-
                                     class="btn" href="index.php?tela=relatorios&amp;aba=<?= $chave ?>" <?= $aba === $chave ? ' aria-current="page"' : '' ?>><?= $rotulo ?></a><?php endforeach; ?></nav>
 
                         <div class="card">
@@ -653,44 +620,38 @@ if (!in_array($ordem, ['nome', 'gravidade'], true)) {
                             <?php if ($aba === 'ordenado'): ?>
 
                                 <form action="index.php" method="get" class="acoes"><input type="hidden" name="tela"
-
                                         value="relatorios"><input type="hidden" name="aba" value="ordenado"><input type="hidden"
-
                                         name="acao" value="relatorio">
 
                                     <button class="btn" name="ordem" value="nome"
-
                                         aria-pressed="<?= $ordem === 'nome' ? 'true' : 'false' ?>">A–Z Nome</button><button
-
                                         class="btn" name="ordem" value="gravidade"
-
                                         aria-pressed="<?= $ordem === 'gravidade' ? 'true' : 'false' ?>">Gravidade</button>
 
                                 </form>
 
                                 <p class="vazio">Relatório indisponível. A ordenação depende dos dados do sistema.</p><a
-
                                     href="relatorio.html">Abrir página de relatórios →</a>
 
                             <?php elseif ($aba === 'distribuicao'): ?>
 
-                               <!--
+                                <!--
                                 Caminho do contagemRelatorio para o "Estatísticas do Dia" | Rafael - 24/novembro - 20:52
                             -->
                                 <?php include(__DIR__ . '/contagemRelatorio.php'); ?>
 
-                                 <!--
+                                <!--
                                 Caminho do contagemRelatorio para o "Por Gravidade" | Rafael - 24/novembro - 20:52
                             -->
                             <?php else: ?>
 
                                 <?php include(__DIR__ . '/contagemRelatorio.php'); ?>
 
-                                <?php endif; ?>
+                            <?php endif; ?>
 
                         </div>
 
-                <?php break;
+                        <?php break;
 
                 endswitch; ?>
 
